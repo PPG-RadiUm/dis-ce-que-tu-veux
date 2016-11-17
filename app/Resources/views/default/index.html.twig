@@ -1,0 +1,445 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--header-start-->
+    <header class="header" id="header"><!--header-start-->
+        <div class="container">
+            <figure class="logo animated fadeInDown delay-07s">
+                <a href="#"><img src="img/dcqtv_logo.png" alt=""></a>
+            </figure>
+            <h1 class="animated fadeInDown delay-07s">Bienvenue sur Dis ce que tu veux</h1>
+            <ul class="we-create animated fadeInUp delay-1s">
+                <li>Viens t'amuser avec tout tes amis ou même des inconnus !</li>
+            </ul>
+            <a id="letsgo" class="link animated fadeInUp delay-1s" href="#log_profile">C'est parti !</a>
+        </div>
+    </header>
+    <!--header-end-->
+
+    <!--main-nav-start-->
+    <nav class="main-nav-outer" id="test" style="display:none;">
+        <div class="container">
+            <ul class="main-nav">
+                <li><a class="selectors" href="#log_profile">Se connecter</a></li>
+                <li><a class="selectors" href="#play">Jouer</a></li>
+                <li class="small-logo"><a href="#log_profile"><img src="img/small_dcqtv_logo.png" alt=""></a></li>
+                <li><a class="selectors" href="#saloon">Saloon</a></li>
+                <li><a class="selectors" href="#questions">Questions</a></li>
+            </ul>
+            <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+        </div>
+    </nav>
+    <!--main-nav-end-->
+
+    <!--main-section-start-->
+    <section class="main-section" id="log_profile">
+        <div class="container">
+            <h2>Log in / Profil</h2>
+            <h6>We offer exceptional service with complimentary hugs.</h6>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s">
+                    <div class="service-list">
+                        <div class="col-lg-6 col-sm-6">
+                            <!--<label>Pseudo</label>-->
+                            <h3>Pseudo</h3>
+                            <input type="text" placeholder="Pseudo"/>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <!--<label>Mot de passe</label>-->
+                            <h3>Mot de passe</h3>
+                            <input type="password" placeholder="********"/>
+                        </div>
+                        <!--<div class="service-list-col1">
+                            <i class="fa-paw"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>branding &amp; identity</h3>
+                            <p>Proin iaculis purus digni consequat sem digni ssim. Donec entum digni ssim.</p>
+                        </div>-->
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-gear"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>web development</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Digni ssim porttitora .</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-apple"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>mobile design</h3>
+                            <p>Proin iaculis purus consequat digni sem digni ssim. Purus donec porttitora entum.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <input type="button" value="Connexion">
+                    </div>
+                </div>
+                <figure class="col-lg-6 col-sm-6  text-right wow fadeInUp delay-02s">
+                    <img src="img/macbook-pro.png" alt="">
+                </figure>
+
+            </div>
+        </div>
+    </section>
+    <!--main-section-end-->
+
+    <!--main-section-start-->
+    <section class="main-section" id="play">
+        <div class="container">
+            <h2>Jouer</h2>
+            <h6>We offer exceptional service with complimentary hugs.</h6>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-paw"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>branding &amp; identity</h3>
+                            <p>Proin iaculis purus digni consequat sem digni ssim. Donec entum digni ssim.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-gear"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>web development</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Digni ssim porttitora .</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-apple"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>mobile design</h3>
+                            <p>Proin iaculis purus consequat digni sem digni ssim. Purus donec porttitora entum.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-medkit"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>24/7 Support</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Sem porttitora entum.</p>
+                        </div>
+                    </div>
+                </div>
+                <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+                    <img src="img/macbook-pro.png" alt="">
+                </figure>
+
+            </div>
+        </div>
+    </section>
+    <!--main-section-end-->
+
+    <!--main-section-start-->
+    <section class="main-section" id="saloon">
+        <div class="container">
+            <h2>Saloon</h2>
+            <h6>We offer exceptional service with complimentary hugs.</h6>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-paw"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>branding &amp; identity</h3>
+                            <p>Proin iaculis purus digni consequat sem digni ssim. Donec entum digni ssim.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-gear"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>web development</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Digni ssim porttitora .</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-apple"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>mobile design</h3>
+                            <p>Proin iaculis purus consequat digni sem digni ssim. Purus donec porttitora entum.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-medkit"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>24/7 Support</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Sem porttitora entum.</p>
+                        </div>
+                    </div>
+                </div>
+                <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+                    <img src="img/macbook-pro.png" alt="">
+                </figure>
+
+            </div>
+        </div>
+    </section>
+    <!--main-section-end-->
+
+    <!--main-section-start-->
+    <section class="main-section" id="questions">
+        <div class="container">
+            <h2>Ajouter des questions</h2>
+            <h6>We offer exceptional service with complimentary hugs.</h6>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-paw"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>branding &amp; identity</h3>
+                            <p>Proin iaculis purus digni consequat sem digni ssim. Donec entum digni ssim.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-gear"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>web development</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Digni ssim porttitora .</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-apple"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>mobile design</h3>
+                            <p>Proin iaculis purus consequat digni sem digni ssim. Purus donec porttitora entum.</p>
+                        </div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-list-col1">
+                            <i class="fa-medkit"></i>
+                        </div>
+                        <div class="service-list-col2">
+                            <h3>24/7 Support</h3>
+                            <p>Proin iaculis purus consequat sem digni ssim. Sem porttitora entum.</p>
+                        </div>
+                    </div>
+                </div>
+                <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+                    <img src="img/macbook-pro.png" alt="">
+                </figure>
+
+            </div>
+        </div>
+    </section>
+    <!--main-section-end-->
+
+    <!--footer-start-->
+    <footer class="footer"  style="display:none;">
+        <div class="container">
+            <div class="footer-logo"><a href="#"><img src="img/medium_dcqtv_logo.png" alt=""></a></div>
+            <span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
+            <div class="credits">
+                <!--
+                    All the links in the footer should remain intact.
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
+                -->
+                <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <!--footer-end-->
+
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $('#test').scrollToFixed();
+            $('.res-nav_click').click(function(){
+                $('.main-nav').slideToggle();
+                return false
+
+            });
+
+        });
+    </script>
+
+    <script>
+        wow = new WOW(
+                {
+                    animateClass: 'animated',
+                    offset:       100
+                }
+        );
+        wow.init();
+    </script>
+
+
+    <script type="text/javascript">
+        $(window).load(function(){
+
+            $('.main-nav li a').bind('click', function(event){
+                /*var $anchor = $(this);
+
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top - 102
+                }, 1500,'easeInOutExpo');
+
+                 if you don't want to use the easing effects:
+                 $('html, body').stop().animate({
+                 scrollTop: $($anchor.attr('href')).offset().top
+                 }, 1000);*/
+
+
+                if ( $('.main-section').hasClass('active-panel') ) {
+                    $('.main-section').removeClass('active-panel')
+                            .addClass('hidden-panel');
+                }
+
+                var idPanel = ($(this).attr('href')).substring(1);
+
+                $('.main-section').each( function () {
+                    if($(this).attr('id') == idPanel) {
+                        $(this).addClass('active-panel')
+                                .removeClass('hidden-panel');
+                    }
+                });
+
+                //event.preventDefault();
+            });
+
+            $('#letsgo').bind('click', function(event){
+                $('header').css('display', 'none');
+                $('.main-nav-outer').css('display', 'block');
+                $('footer').css('display', 'block');
+                $('#log_profile').addClass('active-panel');
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        $(window).load(function(){
+
+
+            var $container = $('.portfolioContainer'),
+                    $body = $('body'),
+                    colW = 375,
+                    columns = null;
+
+
+            $container.isotope({
+                // disable window resizing
+                resizable: true,
+                masonry: {
+                    columnWidth: colW
+                }
+            });
+
+            $(window).smartresize(function(){
+                // check if columns has changed
+                var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
+                if ( currentColumns !== columns ) {
+                    // set new column count
+                    columns = currentColumns;
+                    // apply width to container manually, then trigger relayout
+                    $container.width( columns * colW )
+                            .isotope('reLayout');
+                }
+
+            }).smartresize(); // trigger resize to set container width
+            $('.portfolioFilter a').click(function(){
+                $('.portfolioFilter .current').removeClass('current');
+                $(this).addClass('current');
+
+                var selector = $(this).attr('data-filter');
+                $container.isotope({
+
+                    filter: selector,
+                });
+                return false;
+            });
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    /*body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 21px; margin-bottom: 1em; }
+    p { margin: 0 0 1em 0; }
+    a { color: #0000F0; }
+    a:hover { text-decoration: none; }
+    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+    #container { padding: 2em; }
+    #welcome, #status { margin-bottom: 2em; }
+    #welcome h1 span { display: block; font-size: 75%; }
+    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+    #icon-book { display: none; }
+
+    @media (min-width: 768px) {
+        #wrapper { width: 80%; margin: 2em auto; }
+        #icon-book { display: inline-block; }
+        #status a, #next a { display: block; }
+
+        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }*/
+
+    .main-section {
+        display: none;
+    }
+
+    .main-section.active-panel {
+        display: block;
+    }
+
+    .main-section.hidden-panel {
+        display: none;
+    }
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="img/x-icon">
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css">
+
+    <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
+
+    <script type="text/javascript" src="{{ asset('js/javascript.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.1.8.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-scrolltofixed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.isotope.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/wow.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+    <script src="contactform/contactform.js"></script>
+</style>
+{% endblock %}
