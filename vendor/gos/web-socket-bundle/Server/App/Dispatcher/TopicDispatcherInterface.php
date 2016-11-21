@@ -1,0 +1,54 @@
+<?php
+
+namespace Gos\Bundle\WebSocketBundle\Server\App\Dispatcher;
+
+use Gos\Bundle\WebSocketBundle\Router\WampRequest;
+use Ratchet\ConnectionInterface;
+use Ratchet\Wamp\Topic;
+
+interface TopicDispatcherInterface
+{
+    /**
+     * @param ConnectionInterface $conn
+     * @param Topic               $topic
+     * @param WampRequest         $request
+     */
+    public function onSubscribe(ConnectionInterface $conn, Topic $topic, WampRequest $request);
+
+    /**
+     * @param ConnectionInterface $conn
+     * @param Topic               $topic
+     * @param WampRequest         $request
+     */
+    public function onUnSubscribe(ConnectionInterface $conn, Topic $topic, WampRequest $request);
+
+    /**
+     * @param ConnectionInterface $conn
+     * @param Topic               $topic
+     * @param WampRequest         $request
+     * @param string              $event
+     * @param array               $exclude
+     * @param array               $eligible
+     */
+    public function onPublish(ConnectionInterface $conn, Topic $topic, WampRequest $request, $event, array $exclude, array $eligible);
+
+    /**
+     * @param WampRequest  $request
+     * @param array|string $data
+     * @param string       $provider
+     */
+    public function onPush(WampRequest $request, $data, $provider);
+
+    /**
+     * @param string              $calledMethod
+     * @param ConnectionInterface $conn
+     * @param Topic               $topic
+     * @param WampRequest         $request
+     * @param null                $payload
+     * @param null                $exclude
+     * @param null                $eligible
+     *
+     * @return bool
+     */
+    public function dispatch($calledMethod, ConnectionInterface $conn = null, Topic $topic, WampRequest $request, $payload = null, $exclude = null, $eligible = null);
+}
