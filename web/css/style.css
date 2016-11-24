@@ -99,11 +99,16 @@ p{
 	height: 100vh;
 	text-align:center;
 	background:url(../img/pw_maze_black_2X.png) left top repeat;
-	padding:280px 0;
+	/*padding:280px 0;*/
+	padding-top:20vh;
 }
 .logo{
-	width:130px;
+	/*width:130px;*/
 	margin:0 auto 35px;
+}
+#startLogo {
+	height:35vh;
+	margin-left:-3vw;
 }
 .header h1{
 	font-family: 'Montserrat',sans-serif;
@@ -776,6 +781,9 @@ border: 2px solid #fff;
 .footer{
 	background:url(../img/pw_maze_black_2X.png) left top repeat;
 	padding:35px 0 35px;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
 }
 .footer-logo{
 	margin:15px auto 35px;
@@ -869,4 +877,9 @@ border: 2px solid #fff;
 .delay-12s { 
 	animation-delay: 1.2s; 
 	-webkit-animation-delay: 1.2s; 
+}
+
+#smallLogo {
+	width:56px;
+	height:56px;
 }

@@ -38,6 +38,7 @@ return array(
     'Gos\\Component\\PnctlEventLoopEmitter\\' => array($vendorDir . '/gos/pnctl-event-loop-emitter/src'),
     'Gos\\Bundle\\WebSocketBundle\\' => array($vendorDir . '/gos/web-socket-bundle'),
     'Gos\\Bundle\\PubSubRouterBundle\\' => array($vendorDir . '/gos/pubsub-router-bundle'),
+    'FOS\\UserBundle\\' => array($vendorDir . '/friendsofsymfony/user-bundle'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Doctrine\\Bundle\\DoctrineCacheBundle\\' => array($vendorDir . '/doctrine/doctrine-cache-bundle'),
     'Doctrine\\Bundle\\DoctrineBundle\\' => array($vendorDir . '/doctrine/doctrine-bundle'),
