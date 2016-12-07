@@ -3,7 +3,7 @@ Application Web - Dis ce que tu veux - Développée dans le cadre du projet PLAT
 
 ## Installation
 Nécessite l'installation de Symfony 2.8.* pour faire fonctionner le serveur.   
-- Installation des dépendances si nécessaire (dossier vendor non présent), nécessite [composer](https://getcomposer.org/)  : 'composer update'
+- Installation des dépendances si nécessaire (dossier vendor non présent), nécessite [composer](https://getcomposer.org/download/)  : 'composer update' ou 'php composer.phar update' selon la méthode d'installation  
 - Installation des bundles : 'php app/console assets:install --env=prod' à la racine
 - Lancement du serveur : 'php app/console server:run' à la racine  
 - Accès au serveur en local : 'http://localhost:8000/' dans un navigateur
