@@ -9,15 +9,17 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
     public static $files = array (
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'fc6682fd5796f81eaf84b90ea062654d' => __DIR__ . '/..' . '/gos/pnctl-event-loop-emitter/src/functions.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
-        '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
+        'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -33,6 +35,7 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
             'Symfony\\Component\\' => 18,
             'Symfony\\Bundle\\SwiftmailerBundle\\' => 33,
             'Symfony\\Bundle\\MonologBundle\\' => 29,
+            'Symfony\\Bundle\\AsseticBundle\\' => 29,
             'Symfony\\Bundle\\' => 15,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\Swiftmailer\\' => 27,
@@ -43,6 +46,13 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
             'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
+        ),
+        'R' => 
+        array (
+            'React\\Stream\\' => 13,
+            'React\\Socket\\' => 13,
+            'React\\EventLoop\\' => 16,
+            'Ratchet\\' => 8,
         ),
         'P' => 
         array (
@@ -56,9 +66,20 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
         array (
             'Incenteev\\ParameterHandler\\' => 27,
         ),
+        'G' => 
+        array (
+            'Gos\\Component\\WebSocketClient\\' => 30,
+            'Gos\\Component\\RatchetStack\\' => 27,
+            'Gos\\Component\\PnctlEventLoopEmitter\\' => 36,
+            'Gos\\Bundle\\WebSocketBundle\\' => 27,
+            'Gos\\Bundle\\PubSubRouterBundle\\' => 30,
+        ),
         'D' => 
         array (
+            'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\Annotations\\' => 28,
+            'Doctrine\\Common\\' => 16,
             'Doctrine\\Bundle\\DoctrineCacheBundle\\' => 36,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
         ),
@@ -105,6 +126,10 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
         array (
             0 => __DIR__ . '/..' . '/symfony/monolog-bundle',
         ),
+        'Symfony\\Bundle\\AsseticBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/assetic-bundle',
+        ),
         'Symfony\\Bundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Bundle',
@@ -145,6 +170,22 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
         ),
+        'React\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/stream/src',
+        ),
+        'React\\Socket\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/socket/src',
+        ),
+        'React\\EventLoop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/event-loop/src',
+        ),
+        'Ratchet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gos/ratchet/src/Ratchet',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -157,9 +198,41 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
         ),
+        'Gos\\Component\\WebSocketClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gos/websocket-client',
+        ),
+        'Gos\\Component\\RatchetStack\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gos/ratchet-stack/src',
+        ),
+        'Gos\\Component\\PnctlEventLoopEmitter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gos/pnctl-event-loop-emitter/src',
+        ),
+        'Gos\\Bundle\\WebSocketBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gos/web-socket-bundle',
+        ),
+        'Gos\\Bundle\\PubSubRouterBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gos/pubsub-router-bundle',
+        ),
+        'Doctrine\\Instantiator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
+        ),
         'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\Annotations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
+        ),
+        'Doctrine\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
         'Doctrine\\Bundle\\DoctrineCacheBundle\\' => 
         array (
@@ -190,6 +263,32 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
             ),
         ),
+        'G' => 
+        array (
+            'Guzzle\\Stream' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/stream',
+            ),
+            'Guzzle\\Parser' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/parser',
+            ),
+            'Guzzle\\Http' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/http',
+            ),
+            'Guzzle\\Common' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/common',
+            ),
+        ),
+        'E' => 
+        array (
+            'Evenement' => 
+            array (
+                0 => __DIR__ . '/..' . '/evenement/evenement/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\ORM\\' => 
@@ -212,13 +311,12 @@ class ComposerStaticInita48c2d036e6a9d9e9b8b76ba2a69fdc8
             array (
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
             ),
-            'Doctrine\\Common\\Annotations\\' => 
+        ),
+        'A' => 
+        array (
+            'Assetic' => 
             array (
-                0 => __DIR__ . '/..' . '/doctrine/annotations/lib',
-            ),
-            'Doctrine\\Common\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/common/lib',
+                0 => __DIR__ . '/..' . '/kriswallsmith/assetic/src',
             ),
         ),
     );

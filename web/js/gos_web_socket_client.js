@@ -5,6 +5,13 @@ webSocket.on("socket/connect", function(session){
 
     console.log("Successfully Connected!");
     alert("Hello");
+
+    //the callback function in "subscribe" is called everytime an event is published in that channel.
+    session.subscribe("acme/channel", function(uri, payload){
+        console.log("Received message", payload.msg);
+    });
+
+    session.publish("acme/channel", "This is a message!");
 });
 
 webSocket.on("socket/disconnect", function(error){

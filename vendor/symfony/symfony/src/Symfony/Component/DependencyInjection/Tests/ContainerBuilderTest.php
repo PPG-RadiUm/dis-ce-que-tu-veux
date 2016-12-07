@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
@@ -430,6 +431,20 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($builder->get('foo'), $builder->resolveServices(new Expression('service("foo")')), '->resolveServices() resolves expressions');
     }
 
+    /**
+     * @expectedException \Symfony\Component\DependencyInjection\Exception\RuntimeException
+     * @expectedExceptionMessage Constructing service "foo" from a Symfony\Component\DependencyInjection\DefinitionDecorator is not supported at build time.
+     */
+    public function testResolveServicesWithDecoratedDefinition()
+    {
+        $builder = new ContainerBuilder();
+        $builder->setDefinition('grandpa', new Definition('stdClass'));
+        $builder->setDefinition('parent', new DefinitionDecorator('grandpa'));
+        $builder->setDefinition('foo', new DefinitionDecorator('parent'));
+
+        $builder->get('foo');
+    }
+
     public function testMerge()
     {
         $container = new ContainerBuilder(new ParameterBag(array('bar' => 'foo')));
@@ -794,12 +809,11 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $loader = new ClosureLoader($container = new ContainerBuilder());
         $loader->load(function (ContainerBuilder $container) {
-                $container->set('a', new \BazClass());
-                $definition = new Definition('BazClass');
-                $definition->setLazy(true);
-                $container->setDefinition('a', $definition);
-            }
-        );
+            $container->set('a', new \BazClass());
+            $definition = new Definition('BazClass');
+            $definition->setLazy(true);
+            $container->setDefinition('a', $definition);
+        });
 
         $container->setResourceTracking(true);
 
