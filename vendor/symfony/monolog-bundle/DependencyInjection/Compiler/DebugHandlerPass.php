@@ -11,6 +11,8 @@
 
 namespace Symfony\Bundle\MonologBundle\DependencyInjection\Compiler;
 
+@trigger_error('The '.__NAMESPACE__.'\DebugHandlerPass class is deprecated since version 2.12 and will be removed in 3.0. Use AddDebugLogProcessorPass in FrameworkBundle instead.', E_USER_DEPRECATED);
+
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -22,6 +24,8 @@ use Monolog\Logger;
  *
  * @author Christophe Coevoet <stof@notk.org>
  * @author Jordi Boggiano <j.boggiano@seld.be>
+ *
+ * @deprecated since version 2.12, to be removed in 3.0. Use AddDebugLogProcessorPass in FrameworkBundle instead.
  */
 class DebugHandlerPass implements CompilerPassInterface
 {
@@ -39,6 +43,11 @@ class DebugHandlerPass implements CompilerPassInterface
         }
 
         if (!$container->getParameter('kernel.debug')) {
+            return;
+        }
+
+        // disable the DebugHandler in CLI as it tends to leak memory if people enable kernel.debug
+        if ('cli' === PHP_SAPI) {
             return;
         }
 

@@ -8,6 +8,12 @@ Nécessite l'installation de Symfony 2.8.* pour faire fonctionner le serveur.
 - Lancement du serveur : 'php app/console server:run' à la racine  
 - Accès au serveur en local : 'http://localhost:8000/' dans un navigateur
 
+Pour le bon fonctionnement de FOSUserBundle, la machine doit avoir mysql, une database "symfony" ainsi qu'un utilisateur.
+Pour la configuration de la base de données et des utilisateurs, voir le fichier parameters.yml.
+Sinon, utiliser les commandes :
+- composer require friendsofsymfony/user-bundle "~2.0@dev" : Pour installer le bundle dans Symfony
+- php bin/console doctrine:schema:update --force : Pour initialiser la base de donnée après l'installation du bundle
+
 <!> Ne pas mettre le projet dans un endroit où le path ou chemin pourrait être trop long sur Windows (peut causer une erreur 'Full extraction path exceed MAXPATHLEN (260)')
 
 ## Commandes qui peuvent être utiles
