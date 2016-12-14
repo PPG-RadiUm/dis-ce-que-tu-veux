@@ -13,6 +13,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        /*$user = $this->container->get('fos_user.user_manager')
+            ->findUserByUsername('val');
+
+        var_dump($user);die;*/
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,

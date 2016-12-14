@@ -7,6 +7,22 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+
+        {% block menuBar %}
+        <nav class="main-nav-outer" id="test">
+            <div class="container">
+                <ul class="main-nav">
+                    <li><a class="selectors" href="#log">Se connecter</a></li>
+                    <li><a class="selectors" href="#play">Jouer</a></li>
+                    <li class="small-logo"><a href="#log"><img id="smallLogo" src="img/test/Icone.svg" alt=""></a></li>
+                    <li><a class="selectors" href="#saloon">Saloon</a></li>
+                    <li><a class="selectors" href="#questions">Questions</a></li>
+                </ul>
+                <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+            </div>
+        </nav>
+        {% endblock %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}
             <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
@@ -40,4 +56,138 @@
             <script type="text/javascript" src="{{ asset('js/gos_web_socket_client.js') }}"></script>
         {% endblock %}
     </body>
+
+    {% block footer %}
+    <footer class="footer">
+        <div class="container">
+            <!--<div class="footer-logo"><a href="#"><img src="img/medium_dcqtv_logo.png" alt=""></a></div>-->
+            <span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
+            <div class="credits">
+                <!--
+                    All the links in the footer should remain intact.
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
+                -->
+                <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+
+    <!-- SCRIPTS -->
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $('#test').scrollToFixed();
+            $('.res-nav_click').click(function(){
+                $('.main-nav').slideToggle();
+                return false
+
+            });
+
+        });
+    </script>
+
+    <script>
+        wow = new WOW(
+                {
+                    animateClass: 'animated',
+                    offset:       100
+                }
+        );
+        wow.init();
+    </script>
+
+
+    <script type="text/javascript">
+        $(window).load(function(){
+
+            $('.main-nav li a').bind('click', function(event){
+                /*var $anchor = $(this);
+
+                 $('html, body').stop().animate({
+                 scrollTop: $($anchor.attr('href')).offset().top - 102
+                 }, 1500,'easeInOutExpo');
+
+                 if you don't want to use the easing effects:
+                 $('html, body').stop().animate({
+                 scrollTop: $($anchor.attr('href')).offset().top
+                 }, 1000);*/
+
+
+                if ( $('.main-section').hasClass('active-panel') ) {
+                    $('.main-section').removeClass('active-panel')
+                            .addClass('hidden-panel');
+                }
+
+                var idPanel = ($(this).attr('href')).substring(1);
+
+                $('.main-section').each( function () {
+                    if($(this).attr('id') == idPanel) {
+                        $(this).addClass('active-panel')
+                                .removeClass('hidden-panel');
+                    }
+                });
+
+                //event.preventDefault();
+            });
+
+            $('#letsgo').bind('click', function(event){
+                $('header').css('display', 'none');
+                $('.main-nav-outer').css('display', 'block');
+                $('footer').css('display', 'block');
+
+                $($('#letsgo').attr('href')).addClass('active-panel');
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+
+        $(window).load(function(){
+
+
+            var $container = $('.portfolioContainer'),
+                    $body = $('body'),
+                    colW = 375,
+                    columns = null;
+
+
+            $container.isotope({
+                // disable window resizing
+                resizable: true,
+                masonry: {
+                    columnWidth: colW
+                }
+            });
+
+            $(window).smartresize(function(){
+                // check if columns has changed
+                var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
+                if ( currentColumns !== columns ) {
+                    // set new column count
+                    columns = currentColumns;
+                    // apply width to container manually, then trigger relayout
+                    $container.width( columns * colW )
+                            .isotope('reLayout');
+                }
+
+            }).smartresize(); // trigger resize to set container width
+            $('.portfolioFilter a').click(function(){
+                $('.portfolioFilter .current').removeClass('current');
+                $(this).addClass('current');
+
+                var selector = $(this).attr('data-filter');
+                $container.isotope({
+
+                    filter: selector,
+                });
+                return false;
+            });
+
+        });
+
+    </script>
 </html>
