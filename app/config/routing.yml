@@ -20,3 +20,16 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+
+dcqtv_play:
+    path:      /play
+    defaults:  { _controller: AppBundle:Default:play }
+
+dcqtv_saloon:
+    path:      /saloon
+    defaults:  { _controller: AppBundle:Default:saloon }
+
+dcqtv_questions:
+    path:      /questions
+    defaults:  { _controller: AppBundle:Default:questions }
