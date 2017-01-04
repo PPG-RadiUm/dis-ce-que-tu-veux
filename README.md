@@ -14,9 +14,17 @@ Nécessite l'installation de Symfony 2.8.* pour faire fonctionner le serveur.
 Pour le bon fonctionnement de FOSUserBundle, la machine doit avoir mysql, une database "symfony" ainsi qu'un utilisateur.
 Pour la configuration de la base de données et des utilisateurs, voir le fichier parameters.yml et [cet article stackoverflow](http://stackoverflow.com/questions/30594962/sqlstatehy000-1045-access-denied-for-user-rootlocalhost-using-password).
 
+Installer Mysql via : sudo apt-get php7.0-mysql
+Dans Mysql rentrer ces commandes :
+CREATE DATABASE symfony;
+CREATE USER 'dcqtv_admin'@'localhost' IDENTIFIED BY 'teemotroll';
+GRANT ALL PRIVILEGES ON symfony. * TO 'dcqtv_admin'@'localhost';
+FLUSH PRIVILEGES;
+Puis rentrer la commande suivante : php app/console doctrine:schema:update --force
+
 Sinon, utiliser les commandes :
 - composer require friendsofsymfony/user-bundle "~2.0@dev" : Pour installer le bundle dans Symfony
-- php bin/console doctrine:schema:update --force : Pour initialiser la base de donnée après l'installation du bundle
+- php app/console doctrine:schema:update --force : Pour initialiser la base de donnée après l'installation du bundle
 
 <!> Ne pas mettre le projet dans un endroit où le path ou chemin pourrait être trop long sur Windows (peut causer une erreur 'Full extraction path exceed MAXPATHLEN (260)')
 
