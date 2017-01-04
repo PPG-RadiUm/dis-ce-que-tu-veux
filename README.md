@@ -14,15 +14,17 @@ Nécessite l'installation de Symfony 2.8.* pour faire fonctionner le serveur.
 Pour le bon fonctionnement de FOSUserBundle, la machine doit avoir mysql, une database "symfony" ainsi qu'un utilisateur.
 Pour la configuration de la base de données et des utilisateurs, voir le fichier parameters.yml et [cet article stackoverflow](http://stackoverflow.com/questions/30594962/sqlstatehy000-1045-access-denied-for-user-rootlocalhost-using-password).
 
-Installer Mysql via : sudo apt-get php7.0-mysql
+Installer Mysql via : sudo apt install php7.0-mysql
+
 Dans Mysql rentrer ces commandes :
-CREATE DATABASE symfony;
-CREATE USER 'dcqtv_admin'@'localhost' IDENTIFIED BY 'teemotroll';
-GRANT ALL PRIVILEGES ON symfony. * TO 'dcqtv_admin'@'localhost';
-FLUSH PRIVILEGES;
+- CREATE DATABASE symfony;
+- CREATE USER 'dcqtv_admin'@'localhost' IDENTIFIED BY 'teemotroll';
+- GRANT ALL PRIVILEGES ON symfony. * TO 'dcqtv_admin'@'localhost';
+- FLUSH PRIVILEGES;
+
 Puis rentrer la commande suivante : php app/console doctrine:schema:update --force
 
-Sinon, utiliser les commandes :
+Sinon, si php et mysql sont déjà bien installé, utiliser simplement les commandes suivantes :
 - composer require friendsofsymfony/user-bundle "~2.0@dev" : Pour installer le bundle dans Symfony
 - php app/console doctrine:schema:update --force : Pour initialiser la base de donnée après l'installation du bundle
 
@@ -38,4 +40,7 @@ Sinon, utiliser les commandes :
 
 ### Liens utiles
 [Github - WebSocketBundle](https://github.com/GeniusesOfSymfony/WebSocketBundle)
+[Site Symfony - FOSUserBundle](http://symfony.com/doc/current/bundles/FOSUserBundle/index.html)
+
+
 _2016 - Valentin Ramecourt & Nicolas Vasseur_
