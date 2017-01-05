@@ -8,39 +8,77 @@
         <h2>Se connecter</h2>
         <h6>Connectez-vous à votre compte ou jouez en tant qu'invité.</h6>
         <div class="row">
-            <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s" style="padding-left: 10%;">
-                <form action="{{ path("fos_user_security_check") }}" method="post">
-            {% if csrf_token %}
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            {% endif %}
+            <div class="form">
 
-            <div>
-                <label for="username">{{ 'security.login.username'|trans }}</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-            </div>
+                <ul class="tab-group">
+                    <li class="tab active"><a href="#login">Se connecter</a></li>
+                    <li class="tab"><a href="#guest">Mode invité</a></li>
+                </ul>
 
-            <div>
-                <label for="password">{{ 'security.login.password'|trans }}</label>
-                <input type="password" id="password" name="_password" required="required" />
-            </div>
+                <div class="tab-content">
+                    <div id="login">
+                        <h1>De retour pour tous les battre ?</h1>
 
-            <div>
-                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-            </div>
+                        <form action="/" method="post">
 
-            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-        </form>
-            </div>
-            <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s" style="padding-left: 25%">
-                <div class="service-list">
-                    <label>Pseudo</label>
-                    <input type="text" placeholder="Pseudo" style="display: block;"/>
-                </div>
-                <div class="service-list">
-                    <input type="button" value="Connexion">
-                </div>
-            </div>
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            {% endif %}
+
+                            <div class="field-wrap">
+                                <label>
+                                    {{ 'security.login.username'|trans }}<span class="req">*</span>
+                                </label>
+                                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                            </div>
+
+                            <div class="field-wrap">
+                                <label>
+                                    {{ 'security.login.password'|trans }}<span class="req">*</span>
+                                </label>
+                                <input type="password" id="password" name="_password" required="required" />
+                            </div>
+
+                            <div class="field-wrap">
+                                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            </div>
+
+                            <!--<div>
+                                <label class="checkbox-2">
+                                    <input type="checkbox" checked>
+                                    <span></span>
+                                    checkbox-2
+                                </label>
+                            </div>-->
+
+                            <input type="submit" id="_submit" name="_submit" class="button button-block" value="{{ 'security.login.submit'|trans }}" />
+
+                        </form>
+
+                    </div>
+
+                    <div id="guest">
+                        <h1>Connecte-toi en invité</h1>
+
+                        <form action="/" method="post">
+
+                            <div class="field-wrap">
+                                <label>
+                                    Pseudo<span class="req">*</span>
+                                </label>
+                                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                            </div>
+
+                            <button class="button button-block"/>Let's go !</button>
+
+                        </form>
+
+                    </div>
+
+                </div><!-- tab-content -->
+
+            </div> <!-- /form -->
 
         </div>
     </div>
