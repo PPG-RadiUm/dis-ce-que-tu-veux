@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Guzzle\Http\Message\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="dcqtv_homepage")
      */
     public function indexAction(Request $request)
     {
@@ -22,5 +23,29 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ));
+    }
+
+    /**
+     * @Route("/play", name="dcqtv_play")
+     */
+    public function playAction(Request $request)
+    {
+        return $this->render('default/play.html.twig');
+    }
+
+    /**
+     * @Route("/saloon", name="dcqtv_saloon")
+     */
+    public function saloonAction(Request $request)
+    {
+        return $this->render('default/saloon.html.twig');
+    }
+
+    /**
+     * @Route("/questions", name="dcqtv_questions")
+     */
+    public function questionsAction(Request $request)
+    {
+        return $this->render('default/questions.html.twig');
     }
 }

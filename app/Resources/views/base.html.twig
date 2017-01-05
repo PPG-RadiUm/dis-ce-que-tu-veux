@@ -12,11 +12,11 @@
         <nav class="main-nav-outer" id="test">
             <div class="container">
                 <ul class="main-nav">
-                    <li><a class="selectors" href="#log">Se connecter</a></li>
-                    <li><a class="selectors" href="#play">Jouer</a></li>
-                    <li class="small-logo"><a href="#log"><img id="smallLogo" src="img/test/Icone.svg" alt=""></a></li>
-                    <li><a class="selectors" href="#saloon">Saloon</a></li>
-                    <li><a class="selectors" href="#questions">Questions</a></li>
+                    <li><a class="selectors" href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+                    <li><a class="selectors" href="{{ path('dcqtv_play') }}">Jouer</a></li>
+                    <li class="small-logo"><a href="{{ path('dcqtv_homepage') }}"><img id="smallLogo" src="img/test/Icone.svg" alt=""></a></li>
+                    <li><a class="selectors" href="{{ path('dcqtv_saloon') }}">Saloon</a></li>
+                    <li><a class="selectors" href="{{ path('dcqtv_questions') }}">Questions</a></li>
                 </ul>
                 <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
             </div>
@@ -36,6 +36,7 @@
             <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css">
             <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css">
             <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('css/logForm.css') }}" rel="stylesheet" type="text/css">
 
             <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
 
@@ -46,7 +47,8 @@
             <script type="text/javascript" src="{{ asset('js/jquery.isotope.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/wow.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
-            
+            <script type="text/javascript" src="{{ asset('js/logForm.js') }}"></script>
+
             <!-- Fichiers pour WebSocketBundle -->
             <script type="text/javascript" src="{{ asset('bundles/goswebsocket/js/gos_web_socket_client.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/goswebsocket/js/vendor/autobahn.min.js') }}"></script>
@@ -101,7 +103,7 @@
     </script>
 
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         $(window).load(function(){
 
             $('.main-nav li a').bind('click', function(event){
@@ -142,7 +144,7 @@
                 $($('#letsgo').attr('href')).addClass('active-panel');
             });
         })
-    </script>
+    </script>-->
 
     <script type="text/javascript">
 
