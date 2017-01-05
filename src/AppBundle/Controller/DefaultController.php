@@ -34,6 +34,22 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/lobby_configuration", name="dcqtv_lobby_configuration")
+     */
+    public function lobbyConfigurationAction(Request $request)
+    {
+        return $this->render('default/lobby_configuration.html.twig');
+    }
+
+    /**
+     * @Route("/lobby", name="dcqtv_lobby")
+     */
+    public function lobbyAction(Request $request)
+    {
+        return $this->render('default/lobby.html.twig');
+    }
+
+    /**
      * @Route("/saloon", name="dcqtv_saloon")
      */
     public function saloonAction(Request $request)
