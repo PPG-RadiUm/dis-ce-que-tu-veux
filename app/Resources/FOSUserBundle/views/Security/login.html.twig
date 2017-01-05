@@ -1,5 +1,8 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+<link href="{{ asset('css/logForm.css') }}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{{ asset('js/logForm.js') }}"></script>
+
 {% block fos_user_content %}
     {{ include('FOSUserBundle:Security:login_content.html.twig') }}
 {% endblock fos_user_content %}
