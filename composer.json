@@ -20,13 +20,13 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
+        "sensio/generator-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "gos/web-socket-bundle": "^1.8",
         "symfony/assetic-bundle": "^2.8",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~3.0",
         "symfony/phpunit-bridge": "~2.7"
     },
     "scripts": {
@@ -51,6 +51,7 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-var-dir": "var",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
