@@ -48,3 +48,6 @@
 
 # PhpStorm
 .idea/
+
+# Parameters for using Heroku DB in localy developping
+/app/config/parameters_dev.php
