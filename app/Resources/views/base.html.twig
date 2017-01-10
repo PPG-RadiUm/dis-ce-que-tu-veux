@@ -12,11 +12,22 @@
         <nav class="main-nav-outer" id="test">
             <div class="container">
                 <ul class="main-nav">
-                    <li><a class="selectors" href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
-                    <li><a class="selectors" href="{{ path('dcqtv_play') }}">Jouer</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li><a class="selectors" href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                        <li><a class="selectors" href="{{ path('dcqtv_play') }}">Jouer</a></li>
+                    {% else %}
+                        <li><a class="selectors" href="{{ path('fos_user_security_login') }}">Connection</a></li>
+                    {% endif %}
+
                     <li class="small-logo"><a href="{{ path('dcqtv_homepage') }}"><img id="smallLogo" src="img/test/Icone.svg" alt=""></a></li>
-                    <li><a class="selectors" href="{{ path('dcqtv_saloon') }}">Saloon</a></li>
-                    <li><a class="selectors" href="{{ path('dcqtv_questions') }}">Questions</a></li>
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <!--<li><a class="selectors" href="{{ path('dcqtv_saloon') }}">Saloon</a></li>-->
+                        <li><a class="selectors" href="{{ path('dcqtv_questions') }}">Questions</a></li>
+                        <li><a class="selectors" href="{{ path('fos_user_security_logout') }}">Déconnection</a></li>
+                    {% else %}
+                        <li><a class="selectors" href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                    {% endif %}
                 </ul>
                 <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
             </div>

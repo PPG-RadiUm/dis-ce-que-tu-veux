@@ -3,7 +3,7 @@
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<section class="main-section" id="log" style="margin-left: 15%; margin-right: 15%;">
+<section class="main-section" id="log">
     <div class="container">
         <h2>Se connecter</h2>
         <h6>Connectez-vous à votre compte ou jouez en tant qu'invité.</h6>
@@ -19,7 +19,7 @@
                     <div id="login">
                         <h1>De retour pour tous les battre ?</h1>
 
-                        <form action="/" method="post">
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
 
                             {% if csrf_token %}
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -27,20 +27,20 @@
 
                             <div class="field-wrap">
                                 <label>
-                                    {{ 'security.login.username'|trans }}<span class="req">*</span>
+                                    Pseudo<span class="req">*</span>
                                 </label>
                                 <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
                             </div>
 
                             <div class="field-wrap">
                                 <label>
-                                    {{ 'security.login.password'|trans }}<span class="req">*</span>
+                                    Mot de passe<span class="req">*</span>
                                 </label>
                                 <input type="password" id="password" name="_password" required="required" />
                             </div>
 
                             <div class="field-wrap">
-                                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                <label for="remember_me">Se souvenir de moi</label>
                                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                             </div>
 
@@ -52,7 +52,7 @@
                                 </label>
                             </div>-->
 
-                            <input type="submit" id="_submit" name="_submit" class="button button-block" value="{{ 'security.login.submit'|trans }}" />
+                            <input type="submit" id="_submit" name="_submit" class="button button-block" value="Se connecter" />
 
                         </form>
 
@@ -70,7 +70,7 @@
                                 <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
                             </div>
 
-                            <button class="button button-block"/>Let's go !</button>
+                            <button class="button button-block"/>C'est parti !</button>
 
                         </form>
 
