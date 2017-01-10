@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters_production.yml }
+    - { resource: parameters_production.php }
     - { resource: config.yml }
 
 #framework:
