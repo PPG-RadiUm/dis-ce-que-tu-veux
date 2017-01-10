@@ -46,6 +46,13 @@ class DefaultController extends Controller
      */
     public function lobbyAction(Request $request)
     {
+        if($request->getMethod() == 'POST'){
+            $form->bindRequest($request);
+            $data = $form->getData();
+
+            // Problème de persistence côté serveur, voir une soltuion reactPHP, Redis, MySQL ou PHPDM ??
+            //array_push($rooms, new Room($data['capParticipants'], $data['type']));
+        }
         return $this->render('default/lobby.html.twig');
     }
 

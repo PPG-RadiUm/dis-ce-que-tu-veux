@@ -6,28 +6,30 @@
         <div class="row" style="text-align: center;">
             <div class="col-lg-12 col-sm-12 wow">
                 <div class="service-list">
+                    <form method="post" action="/lobby">
+                        <!--TODO : Améliorer le design -->
+                        Nombre de joueurs :
+                        <select id="capParticipants">
+                          <option value="4">4</option>
+                          <option value="6">6</option>
+                          <option value="8" selected>8</option>
+                        </select>
 
-                    <!--TODO : Améliorer le design -->
-                    Nombre de joueurs :
-                    <select>
-                      <option value="4">4</option>
-                      <option value="6">6</option>
-                      <option value="8" selected>8</option>
-                    </select>
+                        <br><br>
 
-                    <br><br>
-
-                    Type de salon :
-                    <select>
-                      <option value="0" selected>Public</option>
-                      <option value="1">Privé</option>
-                    </select>
-                    <br><br>
-                    <!--TODO : Aspect fonctionnel avec WebSocket -->
-                    <a id="createButton" class="link animated fadeInUp delay-05s" href="/lobby">Valider la création du salon</a>
+                        Type de salon :
+                        <select id="type">
+                          <option value="0" selected>Public</option>
+                          <option value="1">Privé</option>
+                        </select>
+                        <br><br>
+                        <!--TODO : Aspect fonctionnel avec WebSocket -->
+                        <a id="createButton" class="link animated fadeInUp delay-05s">Valider la création du salon</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script type="text/javascript" src="{{ asset('js/own_scripts/lobby_configuration.js') }}"/>
 {% endblock %}

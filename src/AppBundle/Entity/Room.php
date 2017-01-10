@@ -8,23 +8,26 @@ class Room
     public $_participants; // array<Player>
     public $_audience; // array<Player>
     public $_state; // Etat du salon / partie -> waiting_players/starting/waiting_participants/voting/leaderboard/end
+    public $_capParticipants;
+    public $_type; // Si le salon est public (visible sur la liste des salons) ou privé (accessible uniquement via lien)
 
     // Variables statiques à mettre dans en global plus tard
-    public $_cap_participants = 8;
-    public $_cap_audience = 1000;
+    public $_capAudience = 1000;
 
-    public function __construct($id){
+    public function __construct($id, $capParticipants, $type){
         $this->_id = $id;
         $this->_participants = array();
         $this->_audience = array();
         $this->_state = waiting_players;
+        $this->_capParticipants = $capParticipants;
+        $this->_type = $type;
     }
 
     /**
     * Ajout d'un participant dans le salon
     */
     public function addParticipant(Player $player){
-        if(count($this->_participants) < $this->_cap_participants){
+        if(count($this->_participants) < $this->_capParticipants){
             $player->$room = $this->_id;
             array_push($this->_participants);
             return true;
@@ -45,7 +48,7 @@ class Room
     * Ajout d'un membre de l'audience dans le salon
     */
     public function addAudience(Player $player){
-        if(count($this->_audience) < $this->_cap_audience){
+        if(count($this->_audience) < $this->_capAudience){
             $player->$room = $this->_id;
             array_push($this->_audience);
             return true;
