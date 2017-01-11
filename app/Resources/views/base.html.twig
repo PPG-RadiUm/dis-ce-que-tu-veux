@@ -23,7 +23,6 @@
         </nav>
         {% endblock %}
 
-        {% block body %}{% endblock %}
         {% block javascripts %}
             <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
             <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="img/x-icon">
@@ -57,6 +56,8 @@
             <script type="text/javascript" src="{{ asset('js/vendor/autobahn.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/gos_web_socket_client.js') }}"></script>
         {% endblock %}
+
+        {% block body %}{% endblock %}
     </body>
 
     {% block footer %}

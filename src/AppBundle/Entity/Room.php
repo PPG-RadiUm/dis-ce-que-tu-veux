@@ -4,7 +4,8 @@ namespace AppBundle\Entity;
 
 class Room
 {
-    protected $_id; // Int : L'id du salon, il est unique et permet de l'identifier
+    public $_id;
+    public $_host; // host
     public $_participants; // array<Player>
     public $_audience; // array<Player>
     public $_state; // Etat du salon / partie -> waiting_players/starting/waiting_participants/voting/leaderboard/end
@@ -17,8 +18,9 @@ class Room
     public function __construct($id, $capParticipants, $type){
         $this->_id = $id;
         $this->_participants = array();
+        $this->_participants[0] = 1;
         $this->_audience = array();
-        $this->_state = waiting_players;
+        $this->_state = "waiting_players";
         $this->_capParticipants = $capParticipants;
         $this->_type = $type;
     }
@@ -27,9 +29,10 @@ class Room
     * Ajout d'un participant dans le salon
     */
     public function addParticipant(Player $player){
-        if(count($this->_participants) < $this->_capParticipants){
-            $player->$room = $this->_id;
-            array_push($this->_participants);
+
+        if(empty($this->_participants) || count($this->_participants) < $this->_capParticipants){
+            $player->_room = $this->_id;
+            array_push($this->_participants, $player);
             return true;
         } else {
             return false;

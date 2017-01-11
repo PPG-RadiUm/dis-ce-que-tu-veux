@@ -9,12 +9,12 @@ class Player
     public $_state; // String : Où le joueur en est : home/menus/room_waiting/ingame...
     public $_room; // Room : Dans quelle room est le joueur
 
-    public function __construct($id, $pseudo, $state, $room)
+    public function __construct($id, $pseudo, $state)
     {
         $this->_id = $id;
         $this->_pseudo = $pseudo;
         $this->_state = $state;
-        $this->_room = null;
+        $this->_room = -1;
     }
 
 

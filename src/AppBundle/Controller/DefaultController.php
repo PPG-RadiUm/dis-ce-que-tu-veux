@@ -6,6 +6,8 @@ use Guzzle\Http\Message\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Room;
+use AppBundle\Entity\Player;
 
 class DefaultController extends Controller
 {
@@ -38,7 +40,7 @@ class DefaultController extends Controller
      */
     public function lobbyConfigurationAction(Request $request)
     {
-        return $this->render('default/lobby_configuration.html.twig');
+        return $this->render('default/lobby_configuration.html.twig', ["host" => 0]);
     }
 
     /**
@@ -46,14 +48,31 @@ class DefaultController extends Controller
      */
     public function lobbyAction(Request $request)
     {
+
+        if(!isset($rooms_max_id)){
+            $rooms_max_id = -1;
+        }
+
+        if(!isset($rooms)){
+            $rooms = array();
+        }
+
+        if(!isset($players)){
+            $players = array();
+            $players[0] = new Player(0, 'test', "room_waiting");
+        }
+
         if($request->getMethod() == 'POST'){
-            $form->bindRequest($request);
-            $data = $form->getData();
+            $data = $request->request->all();
 
             // Problème de persistence côté serveur, voir une soltuion reactPHP, Redis, MySQL ou PHPDM ??
-            //array_push($rooms, new Room($data['capParticipants'], $data['type']));
+            $rooms_max_id++;
+            $room = new Room($rooms_max_id, $data['capParticipants'], $data['type']);
+            $room->_host = $data['host'];
+            $room->addParticipant($players[0]);
+            $rooms[$rooms_max_id] = $room;
         }
-        return $this->render('default/lobby.html.twig');
+        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room)]);
     }
 
     /**
