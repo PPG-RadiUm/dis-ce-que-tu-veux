@@ -1,8 +1,61 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+<section class="main-section" id="log">
+    <div class="container">
+        <h2>Se connecter</h2>
+        <h6>Connectez-vous à votre compte ou jouez en tant qu'invité.</h6>
+        <div class="row">
+            <div class="form">
+
+                <ul class="tab-group">
+                    <li class="tab active"><a>Inscription</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="fos_user_registration_form">
+                        <h1>Inscris-toi et amuse-toi !</h1>
+
+                        <form action="{{ path('fos_user_registration_register') }}" method="post">
+
+                            <div class="field-wrap">
+                                <label>
+                                    Pseudo<span class="req">*</span>
+                                </label>
+                                <input type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" />
+                                {{ form_widget(form.username) }}
+                            </div>
+
+                            <div class="field-wrap">
+                                <label>
+                                    Email<span class="req">*</span>
+                                </label>
+                                <input type="text" id="fos_user_registration_form_email" name="fos_user_registration_form[email]" required="required" />
+                            </div>
+
+                            <div class="field-wrap">
+                                <label>
+                                    Mot de passe<span class="req">*</span>
+                                </label>
+                                <input type="password" id="fos_user_registration_form_plainPassword_first" name="os_user_registration_form[plainPassword][first]" required="required" />
+                            </div>
+
+                            <div class="field-wrap">
+                                <label>
+                                    Mot de passe<span class="req">*</span>
+                                </label>
+                                <input type="password" id="fos_user_registration_form_plainPassword_second" name="os_user_registration_form[plainPassword][second]" required="required" />
+                            </div>
+
+                            <input type="submit" class="button button-block" value="Valider" />
+
+                        </form>
+
+                    </div>
+
+                </div><!-- tab-content -->
+
+            </div> <!-- /form -->
+
+        </div>
     </div>
-{{ form_end(form) }}
+</section>

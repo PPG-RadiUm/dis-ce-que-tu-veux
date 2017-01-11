@@ -15,7 +15,13 @@
             <ul class="we-create animated fadeInUp delay-1s">
                 <li>Viens t'amuser avec tout tes amis ou même des inconnus !</li>
             </ul>
-            <a id="letsgo" class="link animated fadeInUp delay-1s" href="{{ path('fos_user_security_login') }}">C'est parti !</a>
+            <a id="letsgo" class="link animated fadeInUp delay-1s" href="
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ path('dcqtv_play') }}
+                {% else %}
+                    {{ path('fos_user_security_login') }}
+                {% endif %}
+            ">C'est parti !</a>
         </div>
     </header>
     <!--header-end-->
