@@ -1,0 +1,9 @@
+
+
+dcqtv_topic:
+    channel: dcqtv/lobby/{lobby_id}
+    handler:
+        callback: 'dcqtv.topic' #related to the getName() of your topic
+    requirements:
+        lobby_id:
+            pattern: "\d+"

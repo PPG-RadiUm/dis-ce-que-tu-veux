@@ -6,9 +6,9 @@ webSocket.on("socket/connect", function(session){
     //alert("Hello");
     console.log("Successfully Connected!");
 
-    session.publish("dcqtv/lobby/"+document.getElementById("lobby_id"), document.getElementById("lobby_player_type")+"_"+document.getElementById("lobby_player_pseudo"));
 
-    session.subscribe("dcqtv/lobby/"+document.getElementById("lobby_id"), function(uri, payload){
+    /*session.subscribe("dcqtv/lobby/"+document.getElementById("lobby_id"), function(uri, payload){
+        console.log("Message reçu : "+payload.msg);
         var data = payload.msg.split("_");
 
         if(data[0] == "participant"){
@@ -25,7 +25,14 @@ webSocket.on("socket/connect", function(session){
             li.innerHTML = data[1].pseudo;
             document.getElementById("lobby_audience_list").appendChild(li);
         }
+    });*/
+
+    session.subscribe("dcqtv/lobby/1", function(uri, payload){
+        console.log("Message reçu : "+payload.msg);
     });
+
+    //session.publish("dcqtv/lobby/"+document.getElementById("lobby_id"), {msg: document.getElementById("lobby_player_type")+"_"+document.getElementById("lobby_player_pseudo")});
+    session.publish("dcqtv/lobby/1", "testpublish");
 });
 
 webSocket.on("socket/disconnect", function(error){

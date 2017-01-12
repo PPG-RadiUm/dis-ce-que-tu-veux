@@ -86,7 +86,7 @@ class DefaultController extends Controller
                 $room->addParticipant($players[0]);
             }
         }
-        
+
         return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room), "player_role" => "participant", "player_pseudo" => $players[0]->getPseudo()]);
     }
 
