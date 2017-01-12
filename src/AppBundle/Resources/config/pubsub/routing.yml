@@ -1,0 +1,4 @@
+dcqtv_topic:
+    channel: dcqtv/saloon
+    handler:
+        callback: 'dcqtv.topic' #related to the getName() of your topic

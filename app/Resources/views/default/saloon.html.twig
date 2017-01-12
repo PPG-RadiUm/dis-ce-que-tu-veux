@@ -5,7 +5,7 @@
         <h2>Saloon</h2>
         <h6>Consulter les salles de jeu disponibles.</h6>
         <div class="container">
-            <table class="table table-hover table-bordered table-responsive" style="height: 100px; overflow:auto;">
+            <table id="saloonTable" class="table table-hover table-bordered table-responsive" style="height: 100px; overflow:auto;">
                 <tr class="active">
                     <th>Nom de la partie</th>
                     <th>Nombre de joueurs</th>
@@ -39,4 +39,9 @@
             </table>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/gos_web_socket_saloon.js') }}"></script>
+    {{ parent() }}
 {% endblock %}

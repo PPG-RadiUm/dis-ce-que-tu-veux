@@ -1,0 +1,5 @@
+services:
+    dcqtv.topic_sample_service:
+        class: AppBundle\DcqtvTopic
+        tags:
+            - { name: gos_web_socket.topic }
