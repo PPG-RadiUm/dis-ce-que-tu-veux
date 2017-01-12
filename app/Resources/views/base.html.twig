@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bienvenue{% endblock %} - Dis ce que tu veux</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -16,7 +16,7 @@
                         <li><a class="selectors" href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
                         <li><a class="selectors" href="{{ path('dcqtv_play') }}">Jouer</a></li>
                     {% else %}
-                        <li><a class="selectors" href="{{ path('fos_user_security_login') }}">Connection</a></li>
+                        <li><a class="selectors" href="{{ path('fos_user_security_login') }}">Connexion</a></li>
                     {% endif %}
 
                     <li class="small-logo"><a href="{{ path('dcqtv_homepage') }}"><img id="smallLogo" src="img/test/Icone.svg" alt=""></a></li>
@@ -24,7 +24,7 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <!--<li><a class="selectors" href="{{ path('dcqtv_saloon') }}">Saloon</a></li>-->
                         <li><a class="selectors" href="{{ path('dcqtv_questions') }}">Questions</a></li>
-                        <li><a class="selectors" href="{{ path('fos_user_security_logout') }}">Déconnection</a></li>
+                        <li><a class="selectors" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                     {% else %}
                         <li><a class="selectors" href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
                     {% endif %}
