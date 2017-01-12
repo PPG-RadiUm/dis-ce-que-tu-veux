@@ -6,20 +6,53 @@
         <div class="row" style="text-align: center;">
             <div class="col-lg-12 col-sm-12 wow">
                 <div class="service-list">
-
+                    <input id="lobby_id" type="hidden" value="{{ room._id }}"/>
+                    <input id="lobby_player_pseudo" type="hidden" value="{{ player_pseudo }}"/>
+                    <input id="lobby_player_role" type="hidden" value="{{ player_role }}"/>
                     <!--TODO : Aspect fonctionnel avec WebSocket -->
                     <!--TODO : Création du design -->
-                    Votre salon
+                    Votre salon : {{ room._id }}<br/>
 
                     Id Créateur : {{ room._host }}<br/>
-                    Liste des participants : A venir<br/>
-                    Liste de l'audience : A venir<br/>
+
+                    Liste des participants :
+                    <ul id="lobby_participants_list">
+                    {% for _participant in room._participants %}
+                        {% if _participant.id == room._host %}
+                            <li class="lobby_host">{{ _participant.pseudo }} < Host</li>
+                        {% else %}
+                            <li>{{ _participant.pseudo }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                    <br/>
+
+                    Liste de l'audience :
+                    <ul id="lobby_audience_list">
+                    {% if room._audience is empty %}
+                        Personne dans l'audience pour le moment.
+                    {% else %}
+                        {% for _audience in room._audience %}
+                            <li>{{ _audience_member.pseudo }}</li>
+                        {% endfor %}
+                    {% endif %}
+                    </ul>
+                    <br/>
+
                     Maximum de participants : {{ room._capParticipants }}<br/>
-                    Type : {{ room._type }}<br/>
+
+                    Type :
+                    {% if room._type == 0 %}
+                        Public
+                    {% else %}
+                        Privé
+                    {% endif %}
+                    <br/>
 
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script type="application/javascript" src="{{ asset('js/own_scripts/gws_lobby.js') }}"/>
 {% endblock %}

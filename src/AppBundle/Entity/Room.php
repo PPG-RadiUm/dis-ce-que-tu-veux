@@ -18,7 +18,6 @@ class Room
     public function __construct($id, $capParticipants, $type){
         $this->_id = $id;
         $this->_participants = array();
-        $this->_participants[0] = 1;
         $this->_audience = array();
         $this->_state = "waiting_players";
         $this->_capParticipants = $capParticipants;

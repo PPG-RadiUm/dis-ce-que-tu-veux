@@ -65,14 +65,29 @@ class DefaultController extends Controller
         if($request->getMethod() == 'POST'){
             $data = $request->request->all();
 
-            // Problème de persistence côté serveur, voir une soltuion reactPHP, Redis, MySQL ou PHPDM ??
-            $rooms_max_id++;
-            $room = new Room($rooms_max_id, $data['capParticipants'], $data['type']);
-            $room->_host = $data['host'];
-            $room->addParticipant($players[0]);
-            $rooms[$rooms_max_id] = $room;
+            /*
+             * Si on accède à cette page en créant le salon
+             * Dans $data, on a 'capParticipants', 'type' et 'host'
+             */
+            if(isset($data['lobby_creation'])) {
+                // Problème de persistence côté serveur, voir une soltuion reactPHP, Redis, MySQL ou PHPDM ??
+                $rooms_max_id++;
+                $room = new Room($rooms_max_id, $data['capParticipants'], $data['type']);
+                $room->_host = $data['host'];
+                $room->addParticipant($players[0]);
+                $rooms[$rooms_max_id] = $room;
+            }
+
+            /*
+             * Si on accède à cette page en rejoignant le salon
+             * Dans $data, on a 'player_role', 'player_pseudo'
+             */
+            if(isset($data['lobby_join'])){
+                $room->addParticipant($players[0]);
+            }
         }
-        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room)]);
+        
+        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room), "player_role" => "participant", "player_pseudo" => $players[0]->getPseudo()]);
     }
 
     /**
