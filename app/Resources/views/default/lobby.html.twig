@@ -6,22 +6,22 @@
         <div class="row" style="text-align: center;">
             <div class="col-lg-12 col-sm-12 wow">
                 <div class="service-list">
-                    <input id="lobby_id" type="hidden" value="{{ room._id }}"/>
+                    <input id="lobby_id" type="hidden" value="{{ room.id }}"/>
                     <input id="lobby_player_pseudo" type="hidden" value="{{ player_pseudo }}"/>
                     <input id="lobby_player_role" type="hidden" value="{{ player_role }}"/>
                     <!--TODO : Aspect fonctionnel avec WebSocket -->
                     <!--TODO : Création du design -->
-                    Votre salon : {{ room._id }}<br/>
+                    Votre salon : {{ room.id }}<br/>
 
-                    Id Créateur : {{ room._host }}<br/>
+                    Id Créateur : {{ room.host.id }}<br/>
 
                     Liste des participants :
                     <ul id="lobby_participants_list">
-                    {% for _participant in room._participants %}
-                        {% if _participant.id == room._host %}
-                            <li class="lobby_host">{{ _participant.pseudo }} < Host</li>
+                    {% for participant in room.participants %}
+                        {% if participant.id == room.host.id %}
+                            <li class="lobby_host">{{ participant.pseudo }} < Host</li>
                         {% else %}
-                            <li>{{ _participant.pseudo }}</li>
+                            <li>{{ participant.pseudo }}</li>
                         {% endif %}
                     {% endfor %}
                     </ul>
@@ -29,20 +29,20 @@
 
                     Liste de l'audience :
                     <ul id="lobby_audience_list">
-                    {% if room._audience is empty %}
+                    {% if room.audience is empty %}
                         Personne dans l'audience pour le moment.
                     {% else %}
-                        {% for _audience in room._audience %}
-                            <li>{{ _audience_member.pseudo }}</li>
+                        {% for audience_member in room.audience %}
+                            <li>{{ audience_member.pseudo }}</li>
                         {% endfor %}
                     {% endif %}
                     </ul>
                     <br/>
 
-                    Maximum de participants : {{ room._capParticipants }}<br/>
+                    Maximum de participants : {{ room.capParticipants }}<br/>
 
                     Type :
-                    {% if room._type == 0 %}
+                    {% if room.type == 0 %}
                         Public
                     {% else %}
                         Privé
@@ -53,6 +53,6 @@
             </div>
         </div>
     </div>
-</section>
-<script type="application/javascript" src="{{ asset('js/own_scripts/gws_lobby.js') }}"/>
+</section>{{ ws_client() }}
+    <script type="application/javascript" src="{{ asset('js/own_scripts/gws_lobby.js') }}"></script>
 {% endblock %}
