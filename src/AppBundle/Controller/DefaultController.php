@@ -48,19 +48,11 @@ class DefaultController extends Controller
      */
     public function lobbyAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
 
-        if(!isset($rooms_max_id)){
-            $rooms_max_id = -1;
-        }
-
-        if(!isset($rooms)){
-            $rooms = array();
-        }
-
-        if(!isset($players)){
-            $players = array();
-            $players[0] = new Player(0, 'test', "room_waiting");
-        }
+        $player_host = new Player('test', "room_waiting");
+        $em->persist($player_host);
+        $em->flush();
 
         if($request->getMethod() == 'POST'){
             $data = $request->request->all();
@@ -70,12 +62,15 @@ class DefaultController extends Controller
              * Dans $data, on a 'capParticipants', 'type' et 'host'
              */
             if(isset($data['lobby_creation'])) {
-                // Problème de persistence côté serveur, voir une soltuion reactPHP, Redis, MySQL ou PHPDM ??
-                $rooms_max_id++;
-                $room = new Room($rooms_max_id, $data['capParticipants'], $data['type']);
-                $room->_host = $data['host'];
-                $room->addParticipant($players[0]);
-                $rooms[$rooms_max_id] = $room;
+                $room = new Room($data['capParticipants'], $data['type']);
+                $room->host = $player_host;
+                $room->addParticipant($player_host);
+
+                // tells Doctrine you want to (eventually) save the Room (no queries yet)
+                $em->persist($room);
+
+                // actually executes the queries (i.e. the INSERT query)
+                $em->flush();
             }
 
             /*
@@ -83,11 +78,24 @@ class DefaultController extends Controller
              * Dans $data, on a 'player_role', 'player_pseudo'
              */
             if(isset($data['lobby_join'])){
-                $room->addParticipant($players[0]);
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
+                $room = $repository->find($data['lobby_id']);
+                $new_player = new Player('toto', 'room_waiting');
+
+                $em->persist($new_player);
+                $em->flush();
+
+                $room->addParticipant($new_player);
+
+                // tells Doctrine you want to (eventually) save the Room (no queries yet)
+                $em->persist($room);
+
+                // actually executes the queries (i.e. the INSERT query)
+                $em->flush();
             }
         }
 
-        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room), "player_role" => "participant", "player_pseudo" => $players[0]->getPseudo()]);
+        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room), "player_role" => "participant", "player_pseudo" => isset($new_player)?$new_player->getPseudo():$player_host->getPseudo()]);
     }
 
     /**

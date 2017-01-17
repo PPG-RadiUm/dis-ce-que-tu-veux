@@ -2,12 +2,10 @@ var webSocket = WS.connect("ws://127.0.0.1:8080");
 
 webSocket.on("socket/connect", function(session){
     //session is an Autobahn JS WAMP session.
-
-    //alert("Hello");
     console.log("Successfully Connected!");
 
 
-    /*session.subscribe("dcqtv/lobby/"+document.getElementById("lobby_id"), function(uri, payload){
+    session.subscribe("dcqtv/lobby/"+document.getElementById("lobby_id"), function(uri, payload){
         console.log("Message reçu : "+payload.msg);
         var data = payload.msg.split("_");
 
@@ -25,14 +23,9 @@ webSocket.on("socket/connect", function(session){
             li.innerHTML = data[1].pseudo;
             document.getElementById("lobby_audience_list").appendChild(li);
         }
-    });*/
-
-    session.subscribe("dcqtv/lobby/1", function(uri, payload){
-        console.log("Message reçu : "+payload.msg);
     });
 
-    //session.publish("dcqtv/lobby/"+document.getElementById("lobby_id"), {msg: document.getElementById("lobby_player_type")+"_"+document.getElementById("lobby_player_pseudo")});
-    session.publish("dcqtv/lobby/1", "testpublish");
+    session.publish("dcqtv/lobby/"+document.getElementById("lobby_id"), {msg: document.getElementById("lobby_player_role")+"_"+document.getElementById("lobby_player_pseudo")});
 });
 
 webSocket.on("socket/disconnect", function(error){

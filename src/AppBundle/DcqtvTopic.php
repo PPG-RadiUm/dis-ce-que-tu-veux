@@ -8,7 +8,6 @@
 
 namespace AppBundle;
 
-
 use Gos\Bundle\WebSocketBundle\Topic\TopicInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\Topic;

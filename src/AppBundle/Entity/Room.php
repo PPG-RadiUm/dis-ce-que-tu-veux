@@ -2,57 +2,103 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Room
+ *
+ * @ORM\Table(name="room")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RoomRepository")
+ */
 class Room
 {
-    public $_id;
-    public $_host; // host
-    public $_participants; // array<Player>
-    public $_audience; // array<Player>
-    public $_state; // Etat du salon / partie -> waiting_players/starting/waiting_participants/voting/leaderboard/end
-    public $_capParticipants;
-    public $_type; // Si le salon est public (visible sur la liste des salons) ou privé (accessible uniquement via lien)
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    public $id;
+
+    /**
+     * One Room has One Player (as host).
+     * @ORM\OneToOne(targetEntity="Player")
+     * @ORM\JoinColumn(name="host_id", referencedColumnName="id")
+     */
+    public $host; // host
+
+    /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="room")
+     */
+    public $participants; // array<Player>
+
+    /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="room2")
+     */
+    public $audience; // array<Player>
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $state; // Etat du salon / partie -> waiting_players/starting/waiting_participants/voting/leaderboard/end
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $capParticipants;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $type; // Si le salon est public (visible sur la liste des salons) ou privé (accessible uniquement via lien)
 
     // Variables statiques à mettre dans en global plus tard
-    public $_capAudience = 1000;
+    public $capAudience = 1000;
 
-    public function __construct($id, $capParticipants, $type){
-        $this->_id = $id;
-        $this->_participants = array();
-        $this->_audience = array();
-        $this->_state = "waiting_players";
-        $this->_capParticipants = $capParticipants;
-        $this->_type = $type;
+    public function __construct($capParticipants, $type){
+        $this->participants = array();
+        $this->audience = array();
+        $this->state = "waiting_players";
+        $this->capParticipants = $capParticipants;
+        $this->type = $type;
     }
 
     /**
-    * Ajout d'un participant dans le salon
-    */
+     * Ajout d'un participant dans le salon
+     */
     public function addParticipant(Player $player){
 
-        if(empty($this->_participants) || count($this->_participants) < $this->_capParticipants){
-            $player->_room = $this->_id;
-            array_push($this->_participants, $player);
+        if(is_array($this->participants) && (empty($this->participants) || count($this->participants) < $this->capParticipants)) {
+
+            $player->room = $this;
+            array_push($this->participants, $player);
             return true;
+
+        } else if(is_object($this->participants)){
+
+            $player->room = $this;
+            $this->participants->add($player);
+            return true;
+
         } else {
             return false;
         }
     }
 
     /**
-    * Suppression d'un participant dans le salon
-    */
+     * Suppression d'un participant dans le salon
+     */
     public function removeParticipant(Player $player){
-        $player->$room = null;
-        unset($this->_participants[$player]);
+        $player->room = null;
+        unset($this->participants[$player]);
     }
 
     /**
-    * Ajout d'un membre de l'audience dans le salon
-    */
+     * Ajout d'un membre de l'audience dans le salon
+     */
     public function addAudience(Player $player){
-        if(count($this->_audience) < $this->_capAudience){
-            $player->$room = $this->_id;
-            array_push($this->_audience);
+        if(count($this->audience) < $this->capAudience){
+            $player->room2 = $this;
+            array_push($this->audience);
             return true;
         } else {
             return false;
@@ -60,19 +106,24 @@ class Room
     }
 
     /**
-    * Suppression d'un membre de l'audience dans le salon
-    */
+     * Suppression d'un membre de l'audience dans le salon
+     */
     public function removeAudience(Player $player){
-        $player->$room = null;
-        unset($this->_audience[$player]);
+        $player->room2 = null;
+        unset($this->audience[$player]);
     }
 
     /**
-    * Démarrage de la partie
-    */
+     * Démarrage de la partie
+     */
     public function start(){
-        $this->_state = starting;
+        $this->state = "starting";
 
         // On va choisir des propositions aléatoires dans la BDD et associer les participants deux à deux devant une proposition à chaque fois
     }
+
+    private function getAuthoredComments()
+    {
+    }
 }
+
