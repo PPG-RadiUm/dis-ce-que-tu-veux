@@ -30,6 +30,14 @@ dcqtv_saloon:
     path:      /saloon
     defaults:  { _controller: AppBundle:Default:saloon }
 
+dcqtv_lobby_configuration:
+    path:      /lobbyConfiguration
+    defaults:  { _controller: AppBundle:Default:lobbyConfiguration }
+
+dcqtv_lobby:
+    path:      /lobby
+    defaults:  { _controller: AppBundle:Default:lobby }
+
 dcqtv_questions:
     path:      /questions
     defaults:  { _controller: AppBundle:Default:questions }
