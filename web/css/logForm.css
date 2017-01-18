@@ -2,14 +2,6 @@
     box-sizing: border-box;
 }
 
-html {
-    overflow-y: scroll;
-}
-
-body {
-    font-family: 'Titillium Web', sans-serif;
-}
-
 a {
     text-decoration: none;
     color: #1ab188;
@@ -24,7 +16,7 @@ a:hover {
     background: rgba(19, 35, 47, 0.9);
     padding: 40px;
     max-width: 600px;
-    margin: 40px auto;
+    margin: auto;
     border-radius: 4px;
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
