@@ -1,11 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="application/javascript" src="{{ asset('js/own_scripts/gws_lobby.js') }}"></script>
-{% endblock %}
-
 {% block body %}
 <section class="main-section" id="play">
     <div class="container">
@@ -61,4 +55,9 @@
     </div>
 </section>
 {{ ws_client() }}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="application/javascript" src="{{ asset('js/own_scripts/gws_lobby.js') }}"></script>
 {% endblock %}
