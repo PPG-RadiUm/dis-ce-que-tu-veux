@@ -5,3 +5,9 @@
 {% block fos_user_content %}
 {% include "FOSUserBundle:Registration:register_content.html.twig" %}
 {% endblock fos_user_content %}
+
+{% block scripts %}
+    {{ parent() }}
+    <link href="{{ asset('css/logForm.css') }}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ asset('js/logForm.js') }}"></script>
+{% endblock %}

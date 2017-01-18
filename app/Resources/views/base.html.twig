@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Bienvenue{% endblock %} - Dis ce que tu veux</title>
-        {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -19,10 +18,9 @@
                         <li><a class="selectors" href="{{ path('fos_user_security_login') }}">Connexion</a></li>
                     {% endif %}
 
-                    <li class="small-logo"><a href="{{ path('dcqtv_homepage') }}"><img id="smallLogo" src="img/test/Icone.svg" alt=""></a></li>
+                    <li class="small-logo"><a href="{{ path('dcqtv_homepage') }}"><img id="smallLogo" src="{{ asset('img/Icone.svg') }}" alt=""></a></li>
 
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <!--<li><a class="selectors" href="{{ path('dcqtv_saloon') }}">Saloon</a></li>-->
                         <li><a class="selectors" href="{{ path('dcqtv_questions') }}">Questions</a></li>
                         <li><a class="selectors" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                     {% else %}
@@ -35,7 +33,7 @@
         {% endblock %}
 
         {% block body %}{% endblock %}
-        {% block javascripts %}
+        {% block scripts %}
             <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
             <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="img/x-icon">
 
@@ -47,7 +45,6 @@
             <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css">
             <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css">
             <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css">
-            <link href="{{ asset('css/logForm.css') }}" rel="stylesheet" type="text/css">
 
             <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
 
@@ -58,7 +55,6 @@
             <script type="text/javascript" src="{{ asset('js/jquery.isotope.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/wow.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/logForm.js') }}"></script>
 
             <!-- Fichiers pour WebSocketBundle -->
             <script type="text/javascript" src="{{ asset('bundles/goswebsocket/js/gos_web_socket_client.js') }}"></script>

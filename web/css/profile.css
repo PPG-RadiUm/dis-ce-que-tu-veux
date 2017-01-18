@@ -1,0 +1,247 @@
+body{
+    margin: 0 0 0 0;
+    background-size:cover;
+}
+.click{
+    background: url('http://cdn2.digitalartsonline.co.uk/cmsdata/slideshow/3513552/polybreno_1500.jpg');
+    background-size:contain;
+    position: relative;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    box-shadow: 0px 0px 0px 2pt transparent;
+    border: 0px solid #FFF;
+    margin: auto;
+    cursor: pointer;
+    width:120px;
+    height:120px;
+}
+.Profile{
+    margin-left:auto;
+    z-index: 9999;
+    margin-right:auto;
+    text-align:center;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    width:300px;
+    height:200px;
+    border-radius:50%;
+    margin-top:34vh;
+}
+.clickProfile{
+    margin-left:auto;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    margin-right:auto;
+    background:#191919;
+    text-align:center;
+    padding:20px 0px 20px 0px;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.5s;
+    width:300px;
+    height:160px;
+    margin-top:24vh;
+}
+.Img{
+    background: url('http://cdn2.digitalartsonline.co.uk/cmsdata/slideshow/3513552/polybreno_1500.jpg');
+    background-size:contain;
+    z-index: 9999;
+    position: relative;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.2s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.2s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.2s;
+    box-shadow: 0px 0px 0px 2pt transparent;
+    border: 0px solid #FFF;
+    margin: auto;
+    cursor: pointer;
+    width:200px;
+    height:200px;
+}
+.clickPopUp{
+    position: relative;
+    background: #e74c3c;
+    display:none;
+    opacity:1;
+    width:300px;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    margin-top:20px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+    padding: 13px 0px 10px 0px;
+    font-size:18px;
+}
+.PopUp {
+    position: relative;
+    background: #e74c3c;
+    width:300px;
+    opacity:0;
+    font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+    font-weight: 700;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:#FFF;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    margin-top:20px;
+    border-radius:20px;
+    padding: 13px 0px 10px 0px;
+    font-size:18px;
+}
+.PopUp:after, .clickPopUp:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(231, 76, 60, 0);
+    border-bottom-color: #e74c3c;
+    border-width: 10px;
+    margin-left: -10px;
+
+}
+.PopUp a, .clickPopUp a{
+    font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+    font-weight: 700;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:#FFF;
+}
+.overlay{
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    margin: auto;
+    width: 0px;
+    height: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.Img:hover .overlay, .click:hover .overlay{
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay span{
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    width: 160px;
+    height: 30px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+.Img:hover .overlay span{
+    opacity: 1;
+    -webkit-transition: 1.3s ease;
+    transition: 1.3s ease;
+}
+.content{
+    padding-left: 15px; padding-right: 15px;
+    color:#FFF;
+    font-family: 'Open Sans', sans-serif;
+}
+#logo {
+    width: 40px; /* required to center */
+    height: 40px;
+    border-radius:50%;
+    margin-top:15px;
+    margin-left:20px;
+    margin-right:20px;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.4s;
+    fill: white;
+}
+#logo:hover{
+    background:#191919;
+    border-radius:50%;
+    fill: #e74c3c;;
+}
+.clickPopUp h4{
+    margin-top:10px;
+}
+.buttons{
+    background:transparent;
+    padding:20px;
+    margin:0;
+    -webkit-transition:cubic-bezier(.34,.43,0,1.02) 0.2s;
+    -moz-transition:cubic-bezier(.34,.43,0,1.02) 0.2s;
+    transition:cubic-bezier(.34,.43,0,1.02) 0.2s;
+    border-top: 1px solid #891d1d;
+    border-left: 0px solid #891d1d;
+}
+.b{
+    border-bottom: 1px solid #891d1d;
+}
+.buttons:hover{
+    background:#FF7364;
+    border-left: 3px solid #891d1d;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0,0.2);
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+    font-weight: 700;
+    width: 260px;
+    display: block;
+    border: none;
+    padding: 5px 0;
+    border-bottom: solid 1px #ffffff;
+    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #fdfdfd 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fdfdfd 4%);
+    background-position: -260px 0;
+    background-size: 260px 100%;
+    background-repeat: no-repeat;
+    color: #fdfdfd;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+}
+input[type=text]:focus::-webkit-input-placeholder,
+input[type=text]:valid::-webkit-input-placeholder,
+input[type=password]:focus::-webkit-input-placeholder,
+input[type=password]:valid::-webkit-input-placeholder,
+input[type=email]:focus::-webkit-input-placeholder,
+input[type=email]:valid::-webkit-input-placeholder {
+    color: #ffffff;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    visibility: visible !important;
+}

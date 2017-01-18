@@ -5,3 +5,9 @@
 {% block fos_user_content %}
 {% include "@FOSUser/Profile/show_content.html.twig" %}
 {% endblock fos_user_content %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/profile.js') }}"></script>
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
