@@ -6,6 +6,8 @@ use Guzzle\Http\Message\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Room;
+use AppBundle\Entity\Player;
 
 class DefaultController extends Controller
 {
@@ -31,6 +33,69 @@ class DefaultController extends Controller
     public function playAction(Request $request)
     {
         return $this->render('default/play.html.twig');
+    }
+
+    /**
+     * @Route("/lobby_configuration", name="dcqtv_lobby_configuration")
+     */
+    public function lobbyConfigurationAction(Request $request)
+    {
+        return $this->render('default/lobby_configuration.html.twig', ["host" => 0]);
+    }
+
+    /**
+     * @Route("/lobby", name="dcqtv_lobby")
+     */
+    public function lobbyAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $player_host = new Player('test', "room_waiting");
+        $em->persist($player_host);
+        $em->flush();
+
+        if($request->getMethod() == 'POST'){
+            $data = $request->request->all();
+
+            /*
+             * Si on accède à cette page en créant le salon
+             * Dans $data, on a 'capParticipants', 'type' et 'host'
+             */
+            if(isset($data['lobby_creation'])) {
+                $room = new Room($data['capParticipants'], $data['type']);
+                $room->host = $player_host;
+                $room->addParticipant($player_host);
+
+                // tells Doctrine you want to (eventually) save the Room (no queries yet)
+                $em->persist($room);
+
+                // actually executes the queries (i.e. the INSERT query)
+                $em->flush();
+            }
+
+            /*
+             * Si on accède à cette page en rejoignant le salon
+             * Dans $data, on a 'player_role', 'player_pseudo'
+             */
+            if(isset($data['lobby_join'])){
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
+                $room = $repository->find($data['lobby_id']);
+                $new_player = new Player('toto', 'room_waiting');
+
+                $em->persist($new_player);
+                $em->flush();
+
+                $room->addParticipant($new_player);
+
+                // tells Doctrine you want to (eventually) save the Room (no queries yet)
+                $em->persist($room);
+
+                // actually executes the queries (i.e. the INSERT query)
+                $em->flush();
+            }
+        }
+
+        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room), "player_role" => "participant", "player_pseudo" => isset($new_player)?$new_player->getPseudo():$player_host->getPseudo()]);
     }
 
     /**

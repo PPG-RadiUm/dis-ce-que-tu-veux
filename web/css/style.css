@@ -883,3 +883,7 @@ border: 2px solid #fff;
 	width:56px;
 	height:56px;
 }
+
+.lobby_host {
+	color: red;
+}
