@@ -49,17 +49,25 @@ class Room
     /**
      * @ORM\Column(type="string")
      */
-    public $type; // Si le salon est public (visible sur la liste des salons) ou privé (accessible uniquement via lien)
+    public $type; // Si le salon est public (visible sur la liste des salons), cette variable == 0, sinon s'il est privé (accessible uniquement via lien), cette variable == le code du salon pour y entrer
+
+
 
     // Variables statiques à mettre dans en global plus tard
     public $capAudience = 1000;
 
-    public function __construct($capParticipants, $type){
+    public function __construct($capParticipants, $type)
+    {
         $this->participants = array();
         $this->audience = array();
         $this->state = "waiting_players";
         $this->capParticipants = $capParticipants;
-        $this->type = $type;
+        if($type == 0){
+            $this->type = $type;
+        // Si le salon est privé, on lui génère un code pour y entrer dans $type
+        } else {
+            $this->type = $this->generateRoomCode();
+        }
     }
 
     /**
@@ -113,6 +121,19 @@ class Room
         unset($this->audience[$player]);
     }
 
+    public function generateRoomCode(){
+        $html = file_get_contents("https://www.random.org/strings/?num=1&len=4&digits=on&upperalpha=on&unique=on&format=html&rnd=id.".(time()+rand(0,100)));
+
+        libxml_use_internal_errors(true);
+        $doc = new \DOMDocument();
+        $doc->loadHTML($html);
+        $xpath = new \DOMXpath($doc);
+
+        $node = $xpath->query('//div[@id="invisible"]/pre[@class="data"]')->item(0);
+
+        return trim($node->textContent);
+    }
+
     /**
      * Démarrage de la partie
      */
@@ -120,10 +141,6 @@ class Room
         $this->state = "starting";
 
         // On va choisir des propositions aléatoires dans la BDD et associer les participants deux à deux devant une proposition à chaque fois
-    }
-
-    private function getAuthoredComments()
-    {
     }
 }
 

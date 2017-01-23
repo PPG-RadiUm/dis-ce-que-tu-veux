@@ -50,9 +50,11 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        // Creer une session invité à l'utilisateur s'il n'est pas connecté, récupérer ses infos sinon
         $player_host = new Player('test', "room_waiting");
         $em->persist($player_host);
         $em->flush();
+
 
         if($request->getMethod() == 'POST'){
             $data = $request->request->all();
@@ -100,20 +102,47 @@ class DefaultController extends Controller
                 $em->flush();
             }
         }
+      
+        
+        // GET dans le cas où on veut rentrer dans un salon privé avec le code
+        if($request->getMethod() == 'GET'){
+            $data = $request->query->all();
 
+            if(isset($data['lobby_code'])){
+                $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
+                $room = $repository->findOneBy(array("type" => $data['lobby_code']));
+
+                // On a trouvé le salon dans lequel il veut rentrer
+                if($room != null){
+
+                    $room->addParticipant($player_host);
+
+                    // tells Doctrine you want to (eventually) save the Room (no queries yet)
+                    $em->persist($room);
+
+                    // actually executes the queries (i.e. the INSERT query)
+                    $em->flush();
+
+                // Code d'un salon qui n'existe pas ou plus
+                } else {
+                    return $this->render('default/lobby.html.twig', ["error" => ["message" => "Salon introuvable"]]);
+                }
+            }
+        }
+      
         $tab = ["room" => get_object_vars($room),
         "player_role" => "participant",
         "player_pseudo" => isset($new_player)
             ?$new_player->getPseudo()
             :$player_host->getPseudo()];
+      
         if(isset($data['lobby_join'])){
             $tab["joining"] = true;
-        }else if(isset($data['lobby_creation'])) {
+        } else if(isset($data['lobby_creation'])) {
             $tab["creation"] = true;
         }
 
-        return $this->render('default/lobby.html.twig',
-            $tab);
+        return $this->render('default/lobby.html.twig', $tab);
     }
 
     /**
