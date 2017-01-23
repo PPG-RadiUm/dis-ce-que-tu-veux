@@ -6,4 +6,9 @@ dcqtv_topic:
         callback: 'dcqtv.topic' #related to the getName() of your topic
     requirements:
         lobby_id:
-            pattern: "\d+"
+            pattern: "\d+|\D+"
+
+dcqtv_saloon:
+    channel: dcqtv/saloon
+    handler:
+        callback: 'dcqtv.topic' #related to the getName() of your topic

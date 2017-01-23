@@ -57,6 +57,8 @@ class DefaultController extends Controller
         if($request->getMethod() == 'POST'){
             $data = $request->request->all();
 
+            //var_dump($data);
+
             /*
              * Si on accède à cette page en créant le salon
              * Dans $data, on a 'capParticipants', 'type' et 'host'
@@ -80,12 +82,16 @@ class DefaultController extends Controller
             if(isset($data['lobby_join'])){
                 $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
                 $room = $repository->find($data['lobby_id']);
-                $new_player = new Player('toto', 'room_waiting');
+                $new_player = new Player($data['player_pseudo'], 'room_waiting');
 
                 $em->persist($new_player);
                 $em->flush();
 
-                $room->addParticipant($new_player);
+                if($data['lobby_player_role'] == "participant"){
+                    $room->addParticipant($new_player);
+                }else if($data['lobby_player_role'] == "jury"){
+                    $room->addAudience($new_player);
+                }
 
                 // tells Doctrine you want to (eventually) save the Room (no queries yet)
                 $em->persist($room);
@@ -95,7 +101,19 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('default/lobby.html.twig', ["room" => get_object_vars($room), "player_role" => "participant", "player_pseudo" => isset($new_player)?$new_player->getPseudo():$player_host->getPseudo()]);
+        $tab = ["room" => get_object_vars($room),
+        "player_role" => "participant",
+        "player_pseudo" => isset($new_player)
+            ?$new_player->getPseudo()
+            :$player_host->getPseudo()];
+        if(isset($data['lobby_join'])){
+            $tab["joining"] = true;
+        }else if(isset($data['lobby_creation'])) {
+            $tab["creation"] = true;
+        }
+
+        return $this->render('default/lobby.html.twig',
+            $tab);
     }
 
     /**

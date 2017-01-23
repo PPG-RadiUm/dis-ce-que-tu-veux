@@ -7,8 +7,14 @@
             <div class="col-lg-12 col-sm-12 wow">
                 <div class="service-list">
                     <input id="lobby_id" type="hidden" value="{{ room.id }}"/>
+                    {% if joining is defined %}
+                        <input id="joiningType" type="hidden" value="joining"/>
+                    {% elseif creation is defined %}
+                        <input id="joiningType" type="hidden" value="creation"/>
+                    {% endif %}
                     <input id="lobby_player_pseudo" type="hidden" value="{{ player_pseudo }}"/>
                     <input id="lobby_player_role" type="hidden" value="{{ player_role }}"/>
+                    <input id="lobby_max_player_number" type="hidden" value="{{ room.capParticipants }}"/>
                     <!--TODO : Aspect fonctionnel avec WebSocket -->
                     <!--TODO : Création du design -->
                     Votre salon : {{ room.id }}<br/>
@@ -19,7 +25,7 @@
                     <ul id="lobby_participants_list">
                     {% for participant in room.participants %}
                         {% if participant.id == room.host.id %}
-                            <li class="lobby_host">{{ participant.pseudo }} < Host</li>
+                            <li id="lobby_host">[HOST] {{ participant.pseudo }}</li>
                         {% else %}
                             <li>{{ participant.pseudo }}</li>
                         {% endif %}

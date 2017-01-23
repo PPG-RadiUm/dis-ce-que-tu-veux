@@ -1,8 +1,8 @@
 imports:
     # DB localhost mysql
-    - { resource: parameters.yml }
+    #- { resource: parameters.yml }
     # DB Heroku
-    #- { resource: parameters_dev.php }
+    - { resource: parameters_dev.php }
     - { resource: config.yml }
 
 framework:
