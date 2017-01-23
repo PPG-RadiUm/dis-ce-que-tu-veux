@@ -4,28 +4,55 @@ webSocket.on("socket/connect", function(session){
     //session is an Autobahn JS WAMP session.
     console.log("Successfully Connected!");
 
+    console.log(document.getElementById("joiningType").value);
 
-    session.subscribe("dcqtv/lobby/"+document.getElementById("lobby_id"), function(uri, payload){
+    var joiningType = (document.getElementById("joiningType").value == "creation")
+        ? "lobby_creation"
+        : "lobby_join";
+
+    var toLobby = {
+        "lobby_player_role": document.getElementById("lobby_player_role").value,
+        "pseudo": document.getElementById("lobby_player_pseudo").value,
+    };
+    toLobby[joiningType] = true;
+
+    var toSaloonList = {
+        "host": (document.getElementById("lobby_host").innerHTML.split(" "))[1],
+        "lobbyId": parseInt(document.getElementById("lobby_id").value),
+        "actualPlayersNumber": $('#lobby_participants_list').children('li').length,
+        "maxPlayersNumber": parseInt(document.getElementById("lobby_max_player_number").value),
+        "spectators": $('#lobby_audience_list').children('li').length,
+        "gameState": "Création de la partie"
+    };
+    toSaloonList[joiningType] = true;
+
+    session.publish("dcqtv/lobby/" + document.getElementById("lobby_id").value, toLobby);
+    session.publish("dcqtv/saloon", toSaloonList);
+
+    session.subscribe("dcqtv/lobby/" + document.getElementById("lobby_id").value, function(uri, payload){
         console.log("Message reçu : "+payload.msg);
-        var data = payload.msg.split("_");
+        //var data = payload.msg.split("_");
+        var data = payload.msg;
 
-        if(data[0] == "participant"){
+        console.log(data);
 
-            console.log("Nouveau participant : ", data[1].pseudo);
-            var li = document.createElement("li");
-            li.innerHTML = data[1].pseudo;
-            document.getElementById("lobby_participant_list").appendChild(li);
+        if(data.lobby_join){
+            if(data.lobby_player_role == "participant"){
 
-        } else if(data[0] == "audience"){
+                console.log("Nouveau participant : ", data.pseudo);
+                var li = document.createElement("li");
+                li.innerHTML = data.pseudo;
+                document.getElementById("lobby_participants_list").appendChild(li);
 
-            console.log("Nouveau membre de l'audience : "+ data[1].pseudo);
-            var li = document.createElement("li");
-            li.innerHTML = data[1].pseudo;
-            document.getElementById("lobby_audience_list").appendChild(li);
+            } else if(data.lobby_player_role == "audience"){
+
+                console.log("Nouveau membre de l'audience : "+ data.pseudo);
+                var li = document.createElement("li");
+                li.innerHTML = data.pseudo;
+                document.getElementById("lobby_audience_list").appendChild(li);
+            }
         }
     });
-
-    session.publish("dcqtv/lobby/"+document.getElementById("lobby_id"), {msg: document.getElementById("lobby_player_role")+"_"+document.getElementById("lobby_player_pseudo")});
 });
 
 webSocket.on("socket/disconnect", function(error){

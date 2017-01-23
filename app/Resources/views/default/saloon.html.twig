@@ -3,42 +3,36 @@
 {% block title %}Saloon{% endblock %}
 
 {% block body %}
+    <input id="player_pseudo" type="hidden" value="{{ app.user.username }}"/>
     <section class="main-section" id="saloon">
         <h2>Saloon</h2>
         <h6>Consulter les salles de jeu disponibles.</h6>
         <div class="container">
-            <table class="table table-hover table-bordered table-responsive" style="height: 100px; overflow:auto;">
+            <table id="saloonTable" class="table table-hover table-bordered table-responsive" style="height: 100px; overflow:auto;">
                 <tr class="active">
                     <th>Nom de la partie</th>
                     <th>Nombre de joueurs</th>
                     <th>Nombre de jury</th>
                     <th>Etat de la partie</th>
+                    <th>Jouer</th>
+                    <th>Etre Jury</th>
                 </tr>
                 <tr>
                     <td>Partie de john</td>
                     <td>3/8</td>
                     <td>15</td>
                     <td>Attente - Salon</td>
-                </tr>
-                <tr>
-                    <td>Partie de john</td>
-                    <td>3/8</td>
-                    <td>15</td>
-                    <td>Attente - Salon</td>
-                </tr>
-                <tr>
-                    <td>Partie de john</td>
-                    <td>3/8</td>
-                    <td>15</td>
-                    <td>Attente - Salon</td>
-                </tr>
-                <tr>
-                    <td>Partie de john</td>
-                    <td>3/8</td>
-                    <td>15</td>
-                    <td>Attente - Salon</td>
+                    <td>Bouton Jury</td>
+                    <td>Bouton Jury</td>
                 </tr>
             </table>
         </div>
     </section>
+    {{ ws_client() }}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/own_scripts/gws_saloon.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.redirect.min.js') }}"></script>
 {% endblock %}

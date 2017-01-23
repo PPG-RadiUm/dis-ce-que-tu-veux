@@ -884,6 +884,6 @@ border: 2px solid #fff;
 	height:56px;
 }
 
-.lobby_host {
+#lobby_host {
 	color: red;
 }

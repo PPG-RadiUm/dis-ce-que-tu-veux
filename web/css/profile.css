@@ -245,3 +245,6 @@ input[type=email]:valid::-webkit-input-placeholder {
     transform: translateY(-20px);
     visibility: visible !important;
 }
+.ACon{
+    margin-top:-8vh;
+}
