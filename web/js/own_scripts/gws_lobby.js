@@ -14,7 +14,7 @@ webSocket.on("socket/connect", function(session){
     // Variable qui sera envoyée au channel dcqtv/lobby/{id} pour mettre à jour la vue de ceux qui sont dans le salon
     var toLobby = {
         "lobby_player_role": document.getElementById("lobby_player_role").value,
-        "player_pseudo": document.getElementById("lobby_player_pseudo").value,
+        "player_pseudo": document.getElementById("lobby_player_pseudo").value
     };
     toLobby[joiningType] = true;
 
@@ -22,12 +22,14 @@ webSocket.on("socket/connect", function(session){
     var toSaloonList = {
         "host": (document.getElementById("lobby_host").innerHTML.split(" "))[1],
         "lobbyId": parseInt(document.getElementById("lobby_id").value),
-        "actualPlayersNumber": $('#lobby_participants_list').children('li').length,
+        "actualPlayersNumber": $('#lobby_participants_list').children('td').length + 1,
         "maxPlayersNumber": parseInt(document.getElementById("lobby_max_player_number").value),
-        "spectators": $('#lobby_audience_list').children('li').length,
+        "spectators": $('#lobby_audience_list').children('td').length,
         "gameState": "Création de la partie"
     };
     toSaloonList[joiningType] = true;
+
+    console.log(toSaloonList);
 
     console.log("You publish to lobby and saloon")
     session.publish("dcqtv/lobby/" + document.getElementById("lobby_id").value, toLobby);
@@ -43,19 +45,17 @@ webSocket.on("socket/connect", function(session){
 
         if(data.lobby_join){
             if(data.lobby_player_role == "participant"){
-
+                var table = document.getElementById("lobby_participants_list");
                 console.log("Nouveau participant : ", data.player_pseudo);
-                var li = document.createElement("li");
-                li.innerHTML = data.player_pseudo;
-                document.getElementById("lobby_participants_list").appendChild(li);
 
             } else if(data.lobby_player_role == "audience"){
-
+                var table = document.getElementById("lobby_audience_list");
                 console.log("Nouveau membre de l'audience : "+ data.player_pseudo);
-                var li = document.createElement("li");
-                li.innerHTML = data.player_pseudo;
-                document.getElementById("lobby_audience_list").appendChild(li);
             }
+
+            var row = table.insertRow(table.rows.length);
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = data.player_pseudo;
         }
     });
 });

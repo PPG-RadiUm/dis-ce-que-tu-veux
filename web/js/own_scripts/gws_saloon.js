@@ -22,28 +22,29 @@ webSocket.on("socket/connect", function(session){
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                var cell6 = row.insertCell(5);
 
                 // Add some text to the new cells:
                 cell1.innerHTML = "Partie de " + message.host;
                 cell2.innerHTML = message.actualPlayersNumber + "/" + message.maxPlayersNumber;
                 cell3.innerHTML = message.spectators;
                 cell4.innerHTML = message.gameState;
-                cell5.innerHTML = "<form action='/lobby' method='post'>" +
+                cell5.innerHTML = "<form action='/lobby' method='post' style='display: inline-block; margin: 0; padding-right: 5px;'>" +
                     "<input type='hidden' name='lobby_id' value='" + message.lobbyId + "'/>" +
                     "<input type='hidden' name='lobby_player_role' value='participant'/>" +
                     "<input type='hidden' name='lobby_join' value='true'/>" +
                     "<input type='hidden' name='player_pseudo' value='" + document.getElementById('player_pseudo').value + "'/>" +
                     "<input type='image' src='img/play.svg' style='width: 20px; height: 20px; margin: 0 auto;'/>" +
-                    "</form>";
-                cell6.innerHTML = "<form action='/lobby' method='post'>" +
+                "</form>" +
+                "<form action='/lobby' method='post' style='display: inline-block; margin: 0;'>" +
                     "<input type='hidden' name='lobby_id' value='" + message.lobbyId + "'/>" +
                     "<input type='hidden' name='lobby_player_role' value='jury'/>" +
                     "<input type='hidden' name='lobby_join' value='true'/>" +
                     "<input type='hidden' name='player_pseudo' value='" + document.getElementById('player_pseudo').value + "'/>" +
                     "<input type='image' src='img/spectate.svg' style='width: 20px; height: 20px; margin: 0 auto;'/>" +
                 "</form>";
+                cell5.style.textAlign = "center";
             }else if(message.lobby_join){
+                /* TODO : Get the right raw to edit it */
                 var rowIndex = null;
                 // Get la bonne ligne : rowIndex avec un id ? un code de room ?
                 var theRow = table.rows[rowIndex];

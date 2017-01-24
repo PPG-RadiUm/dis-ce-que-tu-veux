@@ -25,30 +25,6 @@
 
                     Id Créateur : {{ room.host.id }}<br/>
 
-                    Liste des participants :
-                    <ul id="lobby_participants_list">
-                    {% for participant in room.participants %}
-                        {% if participant.id == room.host.id %}
-                            <li id="lobby_host">[HOST] {{ participant.pseudo }}</li>
-                        {% else %}
-                            <li>{{ participant.pseudo }}</li>
-                        {% endif %}
-                    {% endfor %}
-                    </ul>
-                    <br/>
-
-                    Liste de l'audience :
-                    <ul id="lobby_audience_list">
-                    {% if room.audience is empty %}
-                        Personne dans l'audience pour le moment.
-                    {% else %}
-                        {% for audience_member in room.audience %}
-                            <li>{{ audience_member.pseudo }}</li>
-                        {% endfor %}
-                    {% endif %}
-                    </ul>
-                    <br/>
-
                     Maximum de participants : {{ room.capParticipants }}<br/>
 
                     Type :
@@ -57,7 +33,46 @@
                     {% else %}
                         Privé - Code pour rejoindre le salon : {{ room.type }}
                     {% endif %}
-                    <br/>
+                    <br/><br/>
+
+                    <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
+                        <table id="lobby_participants_list" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
+                            <tr class="active">
+                                <th style="text-align: center">Participants</th>
+                            </tr>
+                            {% for participant in room.participants %}
+                                {% if participant.id == room.host.id %}
+                                    <tr><td id="lobby_host">[HOST] {{ participant.pseudo }}</td></tr>
+                                {% else %}
+                                    <tr><td>{{ participant.pseudo }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s animated">
+                        <table id="lobby_audience_list" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
+                            <tr class="active">
+                                <th style="text-align: center">Jury</th>
+                            </tr>
+                            {#{% if room.audience is empty %}
+                                Personne dans l'audience pour le moment.
+                            {% else %}#}
+                                {% for audience_member in room.audience %}
+                                    <tr><td>{{ audience_member.pseudo }}</td></tr>
+                                {% endfor %}
+                            {#{% endif %}#}
+                        </table>
+                    </div>
+
+                    {#{% if (participant.id == room.host.id) and ((room.participants)|length == room.capParticipants) %}
+                    {% if (room.participants)|length == room.capParticipants %}#}
+                    <div class="col-lg-12 col-sm-12 wow">
+                        <div class="service-list">
+                            <a id="createButton" class="link animated fadeInUp delay-05s" href="#">Lancer la partie !</a>
+                        </div>
+                    </div>
+                    {#{% endif %}#}
                 {% endif %}
     </div>
 </section>
