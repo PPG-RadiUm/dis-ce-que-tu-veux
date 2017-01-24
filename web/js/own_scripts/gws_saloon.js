@@ -32,14 +32,16 @@ webSocket.on("socket/connect", function(session){
                 cell5.innerHTML = "<form action='/lobby' method='post'>" +
                     "<input type='hidden' name='lobby_id' value='" + message.lobbyId + "'/>" +
                     "<input type='hidden' name='lobby_player_role' value='participant'/>" +
+                    "<input type='hidden' name='lobby_join' value='true'/>" +
                     "<input type='hidden' name='player_pseudo' value='" + document.getElementById('player_pseudo').value + "'/>" +
-                    "<input type='image' name='lobby_join' src='img/play.svg' style='width: 20px; height: 20px; margin: 0 auto;'/>" +
+                    "<input type='image' src='img/play.svg' style='width: 20px; height: 20px; margin: 0 auto;'/>" +
                     "</form>";
                 cell6.innerHTML = "<form action='/lobby' method='post'>" +
                     "<input type='hidden' name='lobby_id' value='" + message.lobbyId + "'/>" +
                     "<input type='hidden' name='lobby_player_role' value='jury'/>" +
+                    "<input type='hidden' name='lobby_join' value='true'/>" +
                     "<input type='hidden' name='player_pseudo' value='" + document.getElementById('player_pseudo').value + "'/>" +
-                    "<input type='image' name='lobby_join' src='img/spectate.svg' style='width: 20px; height: 20px; margin: 0 auto;'/>" +
+                    "<input type='image' src='img/spectate.svg' style='width: 20px; height: 20px; margin: 0 auto;'/>" +
                 "</form>";
             }else if(message.lobby_join){
                 var rowIndex = null;

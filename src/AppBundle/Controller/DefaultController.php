@@ -55,7 +55,6 @@ class DefaultController extends Controller
         $em->persist($player_host);
         $em->flush();
 
-
         if($request->getMethod() == 'POST'){
             $data = $request->request->all();
 

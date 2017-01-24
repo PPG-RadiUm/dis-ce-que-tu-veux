@@ -44,16 +44,16 @@ webSocket.on("socket/connect", function(session){
         if(data.lobby_join){
             if(data.lobby_player_role == "participant"){
 
-                console.log("Nouveau participant : ", data.pseudo);
+                console.log("Nouveau participant : ", data.player_pseudo);
                 var li = document.createElement("li");
-                li.innerHTML = data.pseudo;
+                li.innerHTML = data.player_pseudo;
                 document.getElementById("lobby_participants_list").appendChild(li);
 
             } else if(data.lobby_player_role == "audience"){
 
-                console.log("Nouveau membre de l'audience : "+ data.pseudo);
+                console.log("Nouveau membre de l'audience : "+ data.player_pseudo);
                 var li = document.createElement("li");
-                li.innerHTML = data.pseudo;
+                li.innerHTML = data.player_pseudo;
                 document.getElementById("lobby_audience_list").appendChild(li);
             }
         }
