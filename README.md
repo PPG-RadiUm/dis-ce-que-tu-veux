@@ -4,7 +4,8 @@ Application Web - Dis ce que tu veux - Développée dans le cadre du projet PLAT
 ## Installation
 Nécessite l'installation de Symfony 2.8.* pour faire fonctionner le serveur.   
 - Installation des dépendances si nécessaire (dossier vendor non présent), nécessite [composer](https://getcomposer.org/download/)  : 'composer update' ou 'php composer.phar update' selon la méthode d'installation  
-- Installation des bundles : 'php app/console assets:install --env=prod' à la racine
+- Si lors de l'installation des dépendances, il y a une erreur spécifiant que la classe DOMDocument est introuvable, il faut installer php-xml avec : 'sudo apt-get install php7.0-xml' et 'sudo service apache2 restart' peut-être utile juste après  
+- Installation des bundles : 'php app/console assets:install' à la racine
 - Lancement du serveur : 'php app/console server:run' à la racine  
 - Lancement de websocket : 'php app/console gos:websocket:server' à la racine
 - Accès au serveur en local : 'http://localhost:8000/' dans un navigateur

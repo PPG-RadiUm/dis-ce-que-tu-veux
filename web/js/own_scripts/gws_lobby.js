@@ -4,18 +4,21 @@ webSocket.on("socket/connect", function(session){
     //session is an Autobahn JS WAMP session.
     console.log("Successfully Connected!");
 
-    console.log(document.getElementById("joiningType").value);
+    console.log("Your joining type is : "+document.getElementById("joiningType").value);
 
+    // Quand on créé la salon, cette variable = lobby_creation, lobby_join sinon
     var joiningType = (document.getElementById("joiningType").value == "creation")
         ? "lobby_creation"
         : "lobby_join";
 
+    // Variable qui sera envoyée au channel dcqtv/lobby/{id} pour mettre à jour la vue de ceux qui sont dans le salon
     var toLobby = {
         "lobby_player_role": document.getElementById("lobby_player_role").value,
-        "pseudo": document.getElementById("lobby_player_pseudo").value,
+        "player_pseudo": document.getElementById("lobby_player_pseudo").value,
     };
     toLobby[joiningType] = true;
 
+    // Variable qui sera envoyée au channel dcqtv/saloon pour mettre à jour la liste des salons
     var toSaloonList = {
         "host": (document.getElementById("lobby_host").innerHTML.split(" "))[1],
         "lobbyId": parseInt(document.getElementById("lobby_id").value),
@@ -26,11 +29,13 @@ webSocket.on("socket/connect", function(session){
     };
     toSaloonList[joiningType] = true;
 
+    console.log("You publish to lobby and saloon")
     session.publish("dcqtv/lobby/" + document.getElementById("lobby_id").value, toLobby);
     session.publish("dcqtv/saloon", toSaloonList);
 
+    console.log("You have been subscribed to dcqtv/lobby/"+document.getElementById("lobby_id").value);
     session.subscribe("dcqtv/lobby/" + document.getElementById("lobby_id").value, function(uri, payload){
-        console.log("Message reçu : "+payload.msg);
+        console.log("Received a publish to dcqtv/lobby/"+document.getElementById("lobby_id").value+" : "+payload.msg);
         //var data = payload.msg.split("_");
         var data = payload.msg;
 

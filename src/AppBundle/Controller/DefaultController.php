@@ -50,7 +50,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        // Creer une session invité à l'utilisateur s'il n'est pas connecté, récupérer ses infos sinon
+        // TODO : Creer une session invité à l'utilisateur s'il n'est pas connecté, récupérer ses infos sinon
         $player_host = new Player('test', "room_waiting");
         $em->persist($player_host);
         $em->flush();
@@ -150,6 +150,11 @@ class DefaultController extends Controller
      */
     public function saloonAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
+        $rooms = $repository->find(1);
+
+        var_dump($rooms);
+
         return $this->render('default/saloon.html.twig');
     }
 
