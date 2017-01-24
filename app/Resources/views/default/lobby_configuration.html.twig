@@ -1,37 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="main-section" id="play">
-    <div class="container">
-        <div class="row" style="text-align: center;">
-            <div class="col-lg-12 col-sm-12 wow">
-                <div class="service-list">
-                    <form method="post" action="{{ path('dcqtv_lobby') }}">
-                        <input type="hidden" name="host" value="{{ host }}"/>
+<section class="main-section" id="lobby_configuration">
+    <h2>Configuration du salon</h2>
+    <h6>Configurez votre salle de jeu. De 4 à 6 joueurs, et vous pouvez générer un code pour y rentrer!</h6>
+    <div class="container" style="text-align:center">
+        <form method="post" action="{{ path('dcqtv_lobby') }}">
+            <input type="hidden" name="host" value="{{ host }}"/>
 
-                        <!--TODO : Améliorer le design -->
-                        Nombre de joueurs :
-                        <select id="capParticipants" name="capParticipants">
-                          <option value="4">4</option>
-                          <option value="6">6</option>
-                          <option value="8" selected>8</option>
-                        </select>
+            <!--TODO : Améliorer le design -->
+            Nombre de joueurs :
+            <select id="capParticipants" name="capParticipants">
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8" selected>8</option>
+            </select>
 
-                        <br><br>
+            <br><br>
 
-                        Type de salon :
-                        <select id="type" name="type">
-                          <option value="0" selected>Public</option>
-                          <option value="1">Privé</option>
-                        </select>
-                        <br><br>
+            Type de salon :
+            <select id="type" name="type">
+              <option value="0" selected>Public</option>
+              <option value="1">Privé</option>
+            </select>
+            <br><br>
 
-                        <!--TODO : Aspect fonctionnel avec WebSocket -->
-                        <input type="submit" id="createButton" name="lobby_creation" class="link animated fadeInUp delay-05s" value="Valider la création du salon"/>
-                    </form>
-                </div>
-            </div>
-        </div>
+            <!--TODO : Aspect fonctionnel avec WebSocket -->
+            <input type="submit" id="createButton" name="lobby_creation" class="link animated fadeInUp delay-05s" value="Valider la création du salon"/>
+        </form>
     </div>
 </section>
 {% endblock %}
