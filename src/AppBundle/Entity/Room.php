@@ -106,7 +106,7 @@ class Room
     public function addAudience(Player $player){
         if(count($this->audience) < $this->capAudience){
             $player->room2 = $this;
-            array_push($this->audience);
+            $this->audience->add($player);
             return true;
         } else {
             return false;
