@@ -168,7 +168,7 @@ class DefaultController extends Controller
     /**
      * @Route("/game", name="dcqtv_game")
      */
-    public function GameStageAction(Request $request){
+    public function GameAction(Request $request){
 
         // Si on doit recharger la vue de quelqu'un déjà dans le jeu
         if($request->getMethod() == 'POST') {
