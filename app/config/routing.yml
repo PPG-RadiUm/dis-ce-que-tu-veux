@@ -41,3 +41,7 @@ dcqtv_lobby:
 dcqtv_questions:
     path:      /questions
     defaults:  { _controller: AppBundle:Default:questions }
+
+dcqtv_game:
+    path:      /game
+    defaults:  { _controller: AppBundle:Default:game }

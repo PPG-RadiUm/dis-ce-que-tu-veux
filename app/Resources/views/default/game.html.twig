@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="main-section" id="game">
+    {% block content %}{% endblock %}
+</section>
+{{ ws_client() }}
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+
+    <script type="application/javascript" src="{{ asset('js/own_scripts/game.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('js/own_scripts/gws_game.js') }}"></script>
+{% endblock %}

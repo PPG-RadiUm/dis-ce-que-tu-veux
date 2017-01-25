@@ -167,4 +167,24 @@ class DefaultController extends Controller
     {
         return $this->render('default/questions.html.twig');
     }
+
+    /**
+     * @Route("/game", name="dcqtv_game")
+     */
+    public function GameStageAction(Request $request){
+
+        // Si on doit recharger la vue de quelqu'un déjà dans le jeu
+        if($request->getMethod() == 'POST') {
+            $data = $request->request->all();
+
+            if($data['vote_stage']){
+                return $this->render('game/vote_stage.html.twig');
+            }
+        } else {
+            // TODO : Selon le type de joueur (participant ou audience), on utilise une vue différente
+            return $this->render('game/game_stage_participant.html.twig');
+        }
+
+    }
+
 }
