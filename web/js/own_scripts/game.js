@@ -1,13 +1,15 @@
 function proposalSubmitted() {
 
+    // Envoyer $data['vote_stage']
     $.ajax({
 
         type: "POST",
-        url: "{{path('yourpath-means header name in routing.yml')}}",
+        url: "{{path('dcqtv_game')}}",
         cache: "false",
         dataType: "html",
+        data: { vote_stage: "vote_stage" },
         success: function (result) {
-            $("div#box").append(result);
+            $("section#game").innerHTML = result;
         }
     })
 }
