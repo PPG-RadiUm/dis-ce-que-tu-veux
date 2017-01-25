@@ -15,6 +15,7 @@ webSocket.on("socket/connect", function(session){
             if(message.lobby_creation){
                 // Create an empty <tr> element and add it to the last position of the table:
                 var row = table.insertRow(table.rows.length);
+                row.id = message.lobbyId;
 
                 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                 var cell1 = row.insertCell(0);
@@ -45,12 +46,10 @@ webSocket.on("socket/connect", function(session){
                 cell5.style.textAlign = "center";
             }else if(message.lobby_join){
                 /* TODO : Get the right raw to edit it */
-                var rowIndex = null;
-                // Get la bonne ligne : rowIndex avec un id ? un code de room ?
-                var theRow = table.rows[rowIndex];
-                theRow[1] = message.actualPlayersNumber + "/" + message.maxPlayersNumber;
-                theRow[2] = message.spectators;
-                theRow[3] = message.gameState;
+                var theRow = document.getElementById(message.lobbyId).getElementsByTagName('td');
+                theRow[1].innerHTML = message.actualPlayersNumber + "/" + message.maxPlayersNumber;
+                theRow[2].innerHTML = message.spectators;
+                theRow[3].innerHTML = message.gameState;
             }
         }
 

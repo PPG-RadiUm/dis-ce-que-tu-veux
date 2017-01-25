@@ -22,14 +22,12 @@ webSocket.on("socket/connect", function(session){
     var toSaloonList = {
         "host": (document.getElementById("lobby_host").innerHTML.split(" "))[1],
         "lobbyId": parseInt(document.getElementById("lobby_id").value),
-        "actualPlayersNumber": $('#lobby_participants_list').children('td').length + 1,
+        "actualPlayersNumber": $('#lobby_participants_list').find('td').length,
         "maxPlayersNumber": parseInt(document.getElementById("lobby_max_player_number").value),
-        "spectators": $('#lobby_audience_list').children('td').length,
+        "spectators": $('#lobby_audience_list').find('td').length,
         "gameState": "Création de la partie"
     };
     toSaloonList[joiningType] = true;
-
-    console.log(toSaloonList);
 
     console.log("You publish to lobby and saloon")
     session.publish("dcqtv/lobby/" + document.getElementById("lobby_id").value, toLobby);
@@ -59,6 +57,8 @@ webSocket.on("socket/connect", function(session){
                     == document.getElementById("lobby_player_id").value
                 && table.rows.length == document.getElementById("lobby_max_player_number").value){
                     $("#createButton").show();
+                    // TODO Amélioration, passer en disabled mais visible seulement que pour le créateur.
+                    //$("#createButton").removeAttribute("disable");
                     $("#createButton").attr("href", "#COUCOU");
                 }
 
