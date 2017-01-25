@@ -131,6 +131,9 @@ class DefaultController extends Controller
       
         $tab = ["room" => get_object_vars($room),
         "player_role" => "participant",
+        "player_id" => isset($new_player)
+            ?$new_player->getId()
+            :$player_host->getId(),
         "player_pseudo" => isset($new_player)
             ?$new_player->getPseudo()
             :$player_host->getPseudo()];

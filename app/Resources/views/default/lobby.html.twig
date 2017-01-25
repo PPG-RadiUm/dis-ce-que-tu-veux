@@ -2,7 +2,15 @@
 
 {% block body %}
 <section class="main-section" id="lobby">
-    <h2>Lobby</h2>
+    <h2>
+        Lobby du salon
+        {% if room.type == 0 %}
+            Public
+        {% else %}
+            Privé
+        {% endif %}
+        n°{{ room.id }}
+    </h2>
     <h6>Attendez que tous les combattants rejoignent la salle avant de lancer la partie!</h6>
     <div class="container" style="text-align:center">
 
@@ -16,29 +24,25 @@
                         <input id="joiningType" type="hidden" value="creation"/>
                     {% endif %}
                     <input id="lobby_id" type="hidden" value="{{ room.id }}"/>
+                    <input id="lobby_host_id" type="hidden" value="{{ room.host.id }}"/>
                     <input id="lobby_player_pseudo" type="hidden" value="{{ player_pseudo }}"/>
+                    <input id="lobby_player_id" type="hidden" value="{{ player_id }}"/>
                     <input id="lobby_player_role" type="hidden" value="{{ player_role }}"/>
                     <input id="lobby_max_player_number" type="hidden" value="{{ room.capParticipants }}"/>
                     <!--TODO : Aspect fonctionnel avec WebSocket -->
                     <!--TODO : Création du design -->
-                    Votre salon : {{ room.id }}<br/>
 
-                    Id Créateur : {{ room.host.id }}<br/>
+                    {#Id Créateur : {{ room.host.id }}<br/>#}
 
-                    Maximum de participants : {{ room.capParticipants }}<br/>
-
-                    Type :
-                    {% if room.type == 0 %}
-                        Public
-                    {% else %}
-                        Privé - Code pour rejoindre le salon : {{ room.type }}
+                    {% if room.type != 0 %}
+                        Code pour rejoindre le salon : {{ room.type }}
                     {% endif %}
                     <br/><br/>
 
                     <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
                         <table id="lobby_participants_list" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
                             <tr class="active">
-                                <th style="text-align: center">Participants</th>
+                                <th id="participants_th" style="text-align: center">Participants ({{ room.participants|length }}/{{ room.capParticipants }})</th>
                             </tr>
                             {% for participant in room.participants %}
                                 {% if participant.id == room.host.id %}
@@ -53,7 +57,7 @@
                     <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s animated">
                         <table id="lobby_audience_list" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
                             <tr class="active">
-                                <th style="text-align: center">Jury</th>
+                                <th id="jury_th" style="text-align: center">Jury</th>
                             </tr>
                             {#{% if room.audience is empty %}
                                 Personne dans l'audience pour le moment.
@@ -65,14 +69,12 @@
                         </table>
                     </div>
 
-                    {#{% if (participant.id == room.host.id) and ((room.participants)|length == room.capParticipants) %}
-                    {% if (room.participants)|length == room.capParticipants %}#}
                     <div class="col-lg-12 col-sm-12 wow">
                         <div class="service-list">
-                            <a id="createButton" class="link animated fadeInUp delay-05s" href="/game">Lancer la partie !</a>
+                            <a id="createButton" class="link animated fadeInUp delay-05s" 
+                               style="display: none;" href="#">Lancer la partie !</a>
                         </div>
                     </div>
-                    {#{% endif %}#}
                 {% endif %}
     </div>
 </section>
