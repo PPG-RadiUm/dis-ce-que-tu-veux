@@ -51,3 +51,5 @@
 
 # Parameters for using Heroku DB in localy developping
 /app/config/parameters_dev.php
+
+/app/config/config_dev.yml
