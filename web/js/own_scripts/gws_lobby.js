@@ -38,7 +38,6 @@ webSocket.on("socket/connect", function(session){
     console.log("You have been subscribed to dcqtv/lobby/"+document.getElementById("lobby_id").value);
     session.subscribe("dcqtv/lobby/" + document.getElementById("lobby_id").value, function(uri, payload){
         console.log("Received a publish to dcqtv/lobby/"+document.getElementById("lobby_id").value+" : "+payload.msg);
-        //var data = payload.msg.split("_");
         var data = payload.msg;
 
         console.log(data);
@@ -46,7 +45,22 @@ webSocket.on("socket/connect", function(session){
         if(data.lobby_join){
             if(data.lobby_player_role == "participant"){
                 var table = document.getElementById("lobby_participants_list");
+
+                // Mise à jour du nombre de participants
+                $('#participants_th').html("Participants (" +
+                    table.rows.length + "/" + document.getElementById("lobby_max_player_number").value + ")");
                 console.log("Nouveau participant : ", data.player_pseudo);
+
+                /**
+                 * Affichage du bouton de lancement de la partie pour le propriétaire de la partie et quand
+                 * le nombre de participants max est atteint.
+                  */
+                if(document.getElementById("lobby_host_id").value
+                    == document.getElementById("lobby_player_id").value
+                && table.rows.length == document.getElementById("lobby_max_player_number").value){
+                    $("#createButton").show();
+                    $("#createButton").attr("href", "#COUCOU");
+                }
 
             } else if(data.lobby_player_role == "audience"){
                 var table = document.getElementById("lobby_audience_list");
