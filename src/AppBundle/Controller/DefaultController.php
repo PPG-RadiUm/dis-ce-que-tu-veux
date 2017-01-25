@@ -164,4 +164,11 @@ class DefaultController extends Controller
     {
         return $this->render('default/questions.html.twig');
     }
+
+    /**
+     * @Route("/game", name="dcqtv_game")
+     */
+    public function gameStageParticipantAction(Request $request){
+        return $this->render('game/game_stage_participant.html.twig');
+    }
 }
