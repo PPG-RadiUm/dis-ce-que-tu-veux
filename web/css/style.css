@@ -900,3 +900,31 @@ border: 2px solid #fff;
 	margin-right: auto;
 	width: 60%;
 }
+
+.leaderboard_content {
+	width:100%;
+	margin:3px auto 0 auto;
+	min-width:300px;
+	padding:0;
+	list-style: none;
+	border:5px solid #CCC;
+	font-size: 25px;
+}
+
+
+.leaderboard_content tr {
+	position: relative;
+	color:#FFF;
+	font-family: helvetica;
+	padding:2% 5%;
+	border-bottom: 1px solid #555;
+	background: #f1c40f;
+}
+
+.leaderboard_content th {
+	text-align: center !important;
+	background: #2ecc71 !important;
+}
+
+.leaderboard_content td {
+}
