@@ -101,6 +101,14 @@ class Room
     }
 
     /**
+     * Vérifie si un joueur est déjà présent dans la liste des participants
+     */
+    public function checkIsParticipant(Player $player)
+    {
+        return in_array($player, $this->participants);
+    }
+
+    /**
      * Ajout d'un membre de l'audience dans le salon
      */
     public function addAudience(Player $player){
@@ -119,6 +127,14 @@ class Room
     public function removeAudience(Player $player){
         $player->room2 = null;
         unset($this->audience[$player]);
+    }
+
+    /**
+     * Vérifie si un joueur est déjà présent dans la liste des participants
+     */
+    public function checkIsAudience(Player $player)
+    {
+        return in_array($player, $this->audience);
     }
 
     public function generateRoomCode(){

@@ -4,11 +4,30 @@
 
 {% block body %}
     {#{{ dump(rooms) }}#}
-    <input id="player_pseudo" type="hidden" value="{{ app.user.username }}"/>
+    <input id="player_pseudo" type="hidden" value="{{ app.user.username }}" xmlns="http://www.w3.org/1999/html"/>
     <section class="main-section" id="saloon">
         <h2>Saloon</h2>
         <h6>Consulter les salles de jeu disponibles.</h6>
         <div class="container">
+            <div class="col-lg-12 col-sm-12 wow">
+                <div class="service-list" style="display: flex; align-items: center; justify-content: center;">
+                    <form action="/lobby" method="post" style="display: inline-block; margin: 0; padding-right: 5px;">
+                        <input type="text" placeholder="Code de la room privée"/>
+                        <input type="hidden" name="lobby_player_role" value="participant"/>
+                        <input type="hidden" name="lobby_join" value="true"/>
+                        <input type="hidden" name="player_pseudo" value="{{ app.user.username }}"/>
+                        <input type="image" src="{{ asset('img/play.svg') }}" style="width: 20px; height: 20px; margin: 0 auto;"/>
+                    </form></br>
+                    <form action="/lobby" method="post" style="display: inline-block; margin: 0;">
+                        <input type="text" placeholder="Code de la room privée"/>
+                        <input type="hidden" name="lobby_player_role" value="jury"/>
+                        <input type="hidden" name="lobby_join" value="true"/>
+                        <input type="hidden" name="player_pseudo" value="{{ app.user.username }}"/>
+                        <input type="image" src="{{ asset('img/spectate.svg') }}" style="width: 20px; height: 20px; margin: 0 auto;"/>
+                    </form>
+                </div>
+            </div>
+
             <table id="saloonTable" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
                 <tr class="active">
                     <th>Nom de la partie</th>
