@@ -2,12 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use FOS\UserBundle\Model\UserInterface;
 use Guzzle\Http\Message\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Room;
 use AppBundle\Entity\Player;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class DefaultController extends Controller
 {
@@ -48,6 +50,12 @@ class DefaultController extends Controller
      */
     public function lobbyAction(Request $request)
     {
+        // Permet de restreindre l'accès. A voir si on laisse.
+        /*$user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }*/
+
         $em = $this->getDoctrine()->getManager();
 
         // TODO : Creer une session invité à l'utilisateur s'il n'est pas connecté, récupérer ses infos sinon
@@ -153,11 +161,11 @@ class DefaultController extends Controller
     public function saloonAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
-        $rooms = $repository->find(1);
+        $rooms = $repository->findAll();
 
-        var_dump($rooms);
+        //var_dump($rooms);
 
-        return $this->render('default/saloon.html.twig');
+        return $this->render('default/saloon.html.twig', ["rooms" => $rooms]);
     }
 
     /**
