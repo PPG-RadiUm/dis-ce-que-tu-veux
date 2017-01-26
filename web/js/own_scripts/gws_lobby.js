@@ -59,7 +59,7 @@ webSocket.on("socket/connect", function(session){
                     $("#createButton").show();
                     // TODO Amélioration, passer en disabled mais visible seulement que pour le créateur.
                     //$("#createButton").removeAttribute("disable");
-                    $("#createButton").attr("href", "#COUCOU");
+                    $("#createButton").attr("href", "/game");
                 }
 
             } else if(data.lobby_player_role == "audience"){

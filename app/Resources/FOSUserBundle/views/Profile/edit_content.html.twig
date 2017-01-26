@@ -1,6 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+<form id="fos_user_profile_form" name="fos_user_profile_form" action="{{ path('fos_user_profile_edit') }}" method="post">
     <div class="ACon">
         <div class="Profile">
             <div class="Img">
@@ -12,13 +12,14 @@
             <div class="clickPopUp">
                 <h4><a class="username" href="">Editer le profil</a></h4>
                 <h5 class="buttons">
-                    {{ form_widget(form.username) }}
+                    {{ form_widget(form.username, { 'attr': {'placeholder': 'Pseudo'} }) }}
                 </h5>
                 <h5 class="buttons">
-                    {{ form_widget(form.email) }}
+                    {{ form_widget(form.email, { 'attr': {'placeholder': 'Email'} }) }}
                 </h5>
                 <h5 class="buttons b">
-                    {{ form_widget(form.current_password) }}
+                    <input type="password" id="fos_user_profile_form_current_password" placeholder="Votre mot de passe"
+                           name="fos_user_profile_form[current_password]" required="required">
                 </h5>
                 <div class="Social">
                     <a href="javascript:{}" onclick="document.forms['fos_user_profile_form'].submit();">
@@ -28,4 +29,4 @@
             </div>
         </div>
     </div>
-{{ form_end(form) }}
+</form>

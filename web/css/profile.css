@@ -172,7 +172,7 @@ body{
 #logo {
     width: 40px; /* required to center */
     height: 40px;
-    border-radius:50%;
+    border-radius:0%;
     margin-top:15px;
     margin-left:20px;
     margin-right:20px;
@@ -182,7 +182,7 @@ body{
     fill: white;
 }
 #logo:hover{
-    background:#191919;
+    background:#e74c3c;
     border-radius:50%;
     fill: #e74c3c;;
 }
