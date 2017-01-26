@@ -887,3 +887,16 @@ border: 2px solid #fff;
 #lobby_host {
 	color: red;
 }
+
+.proposition_th {
+	height: 150px;
+	vertical-align: middle !important;
+	font-size:30px;
+}
+
+.main-section {
+
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}

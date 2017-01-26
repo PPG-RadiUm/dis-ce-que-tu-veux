@@ -1,8 +1,34 @@
 {% extends 'default/game.html.twig' %}
 
 {% block content %}
-<h2>Le pire cadeau d'anniversaire</h2>
+<h2>{{ question }}</h2>
 <div class="container" style="text-align:center">
-    Phase de vote à venir...
+    <br>
+    <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
+        <table id="proposition1" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
+            <form action="game" method="POST" name="proposition1_form">
+            <tr class="active">
+                <input type="hidden" name="{{ next_post }}"/>
+                <th class="proposition_th" id="proposition1_th" style="text-align: center" onclick="proposition1_form.submit()">
+                    {{ proposition1 }}
+                </th>
+            </tr>
+            </form>
+        </table>
+    </div>
+
+    <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s animated">
+        <table id="proposition2" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
+            <form action="game" method="POST" name="proposition2_form">
+                <tr class="active">
+                    <input type="hidden" name="{{ next_post }}"/>
+                    <th class="proposition_th" id="proposition2_th" style="text-align: center;" onclick="proposition2_form.submit()">
+                        {{ proposition2 }}
+                    </th>
+                </tr>
+            </form>
+        </table>
+    </div>
+
 </div>
 {% endblock %}

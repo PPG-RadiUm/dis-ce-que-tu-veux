@@ -171,14 +171,20 @@ class DefaultController extends Controller
     /**
      * @Route("/game", name="dcqtv_game")
      */
-    public function GameAction(Request $request){
+    public function gameAction(Request $request){
 
         // Si on doit recharger la vue de quelqu'un déjà dans le jeu
         if($request->getMethod() == 'POST') {
             $data = $request->request->all();
 
-            if($data['vote_stage']){
-                return $this->render('game/vote_stage.html.twig');
+            if(isset($data['vote_stage'])){
+                return $this->render('game/vote_stage.html.twig', ["question" => "Le pire cadeau d'anniversaire", "proposition1" => "Une photo de la personne en question", "proposition2" => "Du déodorant", "next_post" => "vote_stage2"]);
+            } else if(isset($data['vote_stage2'])){
+                return $this->render('game/vote_stage.html.twig', ["question" => "Le pire métier du monde", "proposition1" => "Pousseur dans le métro", "proposition2" => "Homme politique", "next_post" => "vote_stage3"]);
+            } else if(isset($data['vote_stage3'])){
+                return $this->render('game/vote_stage.html.twig', ["question" => "Le nom de votre entreprise de vente de bateaux", "proposition1" => "Ca m'boat", "proposition2" => "A voile et à vapeur", "next_post" => "leaderboard_stage"]);
+            } else if(isset($data['leaderboard_stage'])){
+                return $this->render('game/leaderboard_stage.html.twig', []);
             }
         } else {
             // TODO : Selon le type de joueur (participant ou audience), on utilise une vue différente
