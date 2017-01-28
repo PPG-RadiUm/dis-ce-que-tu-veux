@@ -66,9 +66,11 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        $doFlush = false;
+
         // TODO : Creer une session invité à l'utilisateur s'il n'est pas connecté, récupérer ses infos sinon
         $playerRepository = $this->getDoctrine()->getRepository('AppBundle:Player');
-        $player_host = $playerRepository->findByPseudo($data['player_pseudo']);
+        $player_host = $playerRepository->findOneByPseudo($data['player_pseudo']);
         // $player_host == null signifie que ce n'est pas un player existant. On le créé donc
         if($player_host == null){
             $player_host = new Player($data['player_pseudo'], "room_waiting");
@@ -84,10 +86,12 @@ class DefaultController extends Controller
              * Dans $data, on a 'capParticipants', 'type' et 'host'
              */
             if(isset($data['lobby_creation'])) {
-                if(!($roomRepository->findByHost($data['host']))){
+                $room = $roomRepository->findOneByHost($data['host']);
+                if($room == null){
                     $room = new Room($data['capParticipants'], $data['type']);
                     $room->host = $player_host;
                     $room->addParticipant($player_host);
+                    $doFlush = true;
                 }
             }
 
@@ -97,13 +101,15 @@ class DefaultController extends Controller
              */
             if(isset($data['lobby_join'])){
                 $room = $roomRepository->find($data['lobby_id']);
-                if(!$room->checkIsParticipant($player_host) && !$room->checkIsAudience($player_host)){
+                if(!$room->checkIsParticipant($player_host)){
+                //if(!$room->checkIsParticipant($player_host) && !$room->checkIsAudience($player_host)){
                     if($data['lobby_player_role'] == "participant"){
                         $room->addParticipant($player_host);
                     }else if($data['lobby_player_role'] == "jury"){
                         $room->addAudience($player_host);
                     }
                 }
+                $doFlush = true;
             }
         }
       
@@ -128,7 +134,7 @@ class DefaultController extends Controller
                         }else if($data['lobby_player_role'] == "jury"){
                             $room->addAudience($player_host);
                         }
-                        $room->addParticipant($player_host);
+                        $doFlush = true;
                     }
 
                 // Code d'un salon qui n'existe pas ou plus
@@ -138,12 +144,14 @@ class DefaultController extends Controller
             }
         }
 
-        // tells Doctrine you want to (eventually) save the Room (no queries yet)
-        $em->persist($room);
+        if($doFlush){
+            // tells Doctrine you want to (eventually) save the Room (no queries yet)
+            $em->persist($room);
 
-        // actually executes the queries (i.e. the INSERT query)
-        $em->flush();
-      
+            // actually executes the queries (i.e. the INSERT query)
+            $em->flush();
+        }
+
         $tab = ["room" => get_object_vars($room),
         "player_role" => "participant",
         "player_id" => isset($new_player)
@@ -152,7 +160,7 @@ class DefaultController extends Controller
         "player_pseudo" => isset($new_player)
             ?$new_player->getPseudo()
             :$player_host->getPseudo()];
-      
+
         if(isset($data['lobby_join'])){
             $tab["joining"] = true;
         } else if(isset($data['lobby_creation'])) {

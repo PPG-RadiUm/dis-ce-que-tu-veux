@@ -93,7 +93,7 @@ webSocket.on("socket/disconnect", function(error){
     //error provides us with some insight into the disconnection: error.reason and error.code
     console.log("Disconnected for " + error.reason + " with code " + error.code);
 
-    var toLobby = {
+    /*var toLobby = {
         "lobby_player_role": document.getElementById("lobby_player_role").value,
         "player_pseudo": document.getElementById("lobby_player_pseudo").value
     };
@@ -112,6 +112,6 @@ webSocket.on("socket/disconnect", function(error){
 
     console.log("You publish to lobby and saloon");
     session.publish("dcqtv/lobby/" + document.getElementById("lobby_id").value, toLobby);
-    session.publish("dcqtv/saloon", toSaloonList);
+    session.publish("dcqtv/saloon", toSaloonList);*/
 });
 

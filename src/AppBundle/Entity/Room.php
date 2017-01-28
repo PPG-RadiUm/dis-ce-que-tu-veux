@@ -78,12 +78,14 @@ class Room
         if(is_array($this->participants) && (empty($this->participants) || count($this->participants) < $this->capParticipants)) {
 
             $player->room = $this;
+            $player->room2 = null;
             array_push($this->participants, $player);
             return true;
 
         } else if(is_object($this->participants)){
 
             $player->room = $this;
+            $player->room2 = null;
             $this->participants->add($player);
             return true;
 
@@ -105,7 +107,16 @@ class Room
      */
     public function checkIsParticipant(Player $player)
     {
-        return in_array($player, $this->participants);
+        if(is_array($this->participants)){
+            return in_array($player, $this->participants);
+        }else if(is_object($this->participants)){
+            foreach ($this->participants as $key => $value){
+                if($value == $player)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -114,6 +125,7 @@ class Room
     public function addAudience(Player $player){
         if(count($this->audience) < $this->capAudience){
             $player->room2 = $this;
+            $player->room = null;
             $this->audience->add($player);
             return true;
         } else {
@@ -134,7 +146,16 @@ class Room
      */
     public function checkIsAudience(Player $player)
     {
-        return in_array($player, $this->audience);
+        if(is_array($this->audience)){
+            return in_array($player, $this->audience);
+        }else if(is_object($this->audience)){
+            foreach ($this->audience as $key => $value){
+                if($value == $player)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     public function generateRoomCode(){
