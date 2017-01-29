@@ -85,7 +85,7 @@ h6{
 	font-family: 'Open Sans', sans-serif;
 	font-weight:400;
 	text-align:center;
-	margin:0 0 60px 0;
+	margin:0 0 20px 0;
 }
 p{
 	line-height:24px;
@@ -219,7 +219,7 @@ color: #fff;
 }
 
 .main-section{
-	padding:90px 0 110px;
+	padding:40px 0 110px;
 	min-height: 70vh;
 }
 
@@ -927,4 +927,43 @@ border: 2px solid #fff;
 }
 
 .leaderboard_content td {
+}
+
+#animate {
+	display: none;
+	text-align: center;
+	margin: 0px;
+	width: 100%;
+	font-size: 20px;
+	color: red;
+}
+
+#game_timer {
+	color: lightslategray;
+	font-size: 30px;
+	float: left;
+	width: 23%;
+	text-align: right;
+}
+
+#game_code {
+	color: lightslategray;
+	font-size: 30px;
+	float: right;
+	width: 25%;
+}
+
+#float_clear {
+	clear: both;
+}
+
+.saloonCodeEntry {
+	padding: 0px 10px !important;
+	font-size: inherit !important;
+}
+
+#lobby_error {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 35px;
 }

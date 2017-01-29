@@ -1,14 +1,19 @@
 {% extends 'default/game.html.twig' %}
 
 {% block content %}
-<h2>Le secret d'un repas de Noël réussi</h2>
+<div id="game_timer"></div>
+<div id="game_code">R2D2</div>
+<div id="float_clear"></div>
+
+<h2>Le pire cadeau d'anniversaire</h2>
+
 <div class="container" style="text-align:center">
-    <input type="text" placeholder="Entrez votre réponse" value=""/>
     <div class="col-lg-12 col-sm-12 wow">
         <div class="service-list">
-
-            <br>
-            <form action="/game" method="POST">
+            <form action="/game" method="POST" name="proposition_form" id="proposition_form">
+                <input type="text" size="40" style="text-align: center; height: 50px; font-size: 25px;" name="answer" placeholder="Entrez votre réponse" value=""/>
+                <br>
+                <br>
                 <input type="hidden" name="vote_stage" value="vote_stage"/>
                 <input type="submit" id="createButton" class="link animated fadeInUp delay-05s" value="Valider"/>
             </form>

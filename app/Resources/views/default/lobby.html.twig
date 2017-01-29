@@ -2,21 +2,25 @@
 
 {% block body %}
 <section class="main-section" id="lobby">
-    <h2>
-        Lobby du salon
-        {% if room.type == 0 %}
-            Public
-        {% else %}
-            Privé
-        {% endif %}
-        n°{{ room.id }}
-    </h2>
-    <h6>Attendez que tous les combattants rejoignent la salle avant de lancer la partie!</h6>
-    <div class="container" style="text-align:center">
+    {% if error is defined %}
+        <div id="lobby_error">
+            {{ error.message }}
+            <br/>
+            <a href="/saloon"><input class="link animated fadeInUp delay-05s" type="button" value="Retour"/></a>
+        </div>
+    {% else %}
+        <h2>
+            Lobby du salon
+            {% if room.type == 0 %}
+                Public
+            {% else %}
+                Privé
+            {% endif %}
+            n°{{ room.id }}
+        </h2>
+        <h6>Attendez que tous les combattants rejoignent la salle avant de lancer la partie!</h6>
+        <div class="container" style="text-align:center">
 
-                {% if error is defined %}
-                    {{ error.message }}
-                {% else %}
 
                     {% if joining is defined %}
                         <input id="joiningType" type="hidden" value="joining"/>
@@ -34,9 +38,13 @@
 
                     {#Id Créateur : {{ room.host.id }}<br/>#}
 
+                    {# Il devrait avoir un code pour rejoindre quelque soit le type de partie #}
                     {% if room.type != 0 %}
                         Code pour rejoindre le salon : {{ room.type }}
+                    {% else %}
+                        Code pour rejoindre le salon : R2D2
                     {% endif %}
+
                     <br/><br/>
 
                     <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
@@ -76,8 +84,8 @@
                                href="/game">Lancer la partie !</a>
                         </div>
                     </div>
-                {% endif %}
-    </div>
+        </div>
+    {% endif %}
 </section>
 {{ ws_client() }}
 {% endblock %}

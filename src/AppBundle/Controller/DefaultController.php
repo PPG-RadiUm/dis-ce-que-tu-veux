@@ -111,7 +111,7 @@ class DefaultController extends Controller
         }
       
         
-        // GET dans le cas où on veut rentrer dans un salon privé avec le code
+        // GET dans le cas où on veut rentrer dans un salon privé (ou public aussi au final) avec le code
         if($request->getMethod() == 'GET'){
             $data = $request->query->all();
 
@@ -132,7 +132,7 @@ class DefaultController extends Controller
 
                 // Code d'un salon qui n'existe pas ou plus
                 } else {
-                    return $this->render('default/lobby.html.twig', ["error" => ["message" => "Salon introuvable"]]);
+                    return $this->render('default/lobby.html.twig', ["error" => ["message" => "Le salon n'existe pas ou plus."]]);
                 }
             }
         }
@@ -185,17 +185,44 @@ class DefaultController extends Controller
         if($request->getMethod() == 'POST') {
             $data = $request->request->all();
 
+            // On entre dans la phase de vote
             if(isset($data['vote_stage'])){
-                return $this->render('game/vote_stage.html.twig', ["question" => "Le pire cadeau d'anniversaire", "proposition1" => "Une photo de la personne en question", "proposition2" => "Du déodorant", "next_post" => "vote_stage2"]);
+
+                return $this->render('game/vote_stage.html.twig',
+                    ["question" => "Le pire cadeau d'anniversaire",
+                        "proposition1" => empty($data['answer'])?'Aucune réponse donnée :(':$data['answer'], "proposition2" => "Du déodorant",
+                        "participant1" => "Test", "participant2" => "Radium",
+                        "next_post" => "vote_stage2"]);
+
             } else if(isset($data['vote_stage2'])){
-                return $this->render('game/vote_stage.html.twig', ["question" => "Le pire métier du monde", "proposition1" => "Pousseur dans le métro", "proposition2" => "Homme politique", "next_post" => "vote_stage3"]);
+                return $this->render('game/vote_stage.html.twig',
+                    ["question" => "Le pire métier du monde",
+                        "proposition1" => "Pousseur dans le métro", "proposition2" => "Homme politique",
+                        "participant1" => "Lina", "participant2" => "HenryMichel",
+                        "next_post" => "vote_stage3"]);
+
             } else if(isset($data['vote_stage3'])){
-                return $this->render('game/vote_stage.html.twig', ["question" => "Le nom de votre entreprise de vente de bateaux", "proposition1" => "Ca m'boat", "proposition2" => "A voile et à vapeur", "next_post" => "leaderboard_stage"]);
+                return $this->render('game/vote_stage.html.twig',
+                    ["question" => "Le nom de votre entreprise de vente de bateaux",
+                        "proposition1" => "Ca m'boat", "proposition2" => "A voile et à vapeur",
+                        "participant1" => "Chou", "participant2" => "Kevin",
+                        "next_post" => "vote_stage4"]);
+
+            } else if(isset($data['vote_stage4'])){
+                return $this->render('game/vote_stage.html.twig',
+                    ["question" => "Le secret d'un repas de Noël réussi",
+                        "proposition1" => "Une superbe bûche de glace", "proposition2" => "L'anecdote bien grasse du grand-père",
+                        "participant1" => "Clém", "participant2" => "Tatawa",
+                        "next_post" => "leaderboard_stage"]);
+
+            // On arrive au classement
             } else if(isset($data['leaderboard_stage'])){
                 return $this->render('game/leaderboard_stage.html.twig', []);
             }
+
         } else {
             // TODO : Selon le type de joueur (participant ou audience), on utilise une vue différente
+            // On entre dans la phase de jeu
             return $this->render('game/game_stage_participant.html.twig');
         }
 

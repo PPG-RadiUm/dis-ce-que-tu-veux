@@ -1,34 +1,44 @@
 {% extends 'default/game.html.twig' %}
 
 {% block content %}
+<div id="game_timer"></div>
+<div id="game_code">R2D2</div>
+<div id="float_clear"></div>
+
 <h2>{{ question }}</h2>
 <div class="container" style="text-align:center">
     <br>
+
+
     <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
         <table id="proposition1" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
-            <form action="game" method="POST" name="proposition1_form">
+            <form action="game" method="POST" id="proposition1_form" name="proposition1_form">
             <tr class="active">
                 <input type="hidden" name="{{ next_post }}"/>
-                <th class="proposition_th" id="proposition1_th" style="text-align: center" onclick="proposition1_form.submit()">
+                <th class="proposition_th" id="proposition1_th" style="text-align: center" onclick="validate('proposition1_form')">
                     {{ proposition1 }}
                 </th>
             </tr>
             </form>
         </table>
+        <span id="player1_pseudo" style="display: none">{{ participant1 }}</span>
     </div>
 
     <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s animated">
         <table id="proposition2" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
-            <form action="game" method="POST" name="proposition2_form">
+            <form action="game" method="POST" id="proposition2_form" name="proposition2_form">
                 <tr class="active">
                     <input type="hidden" name="{{ next_post }}"/>
-                    <th class="proposition_th" id="proposition2_th" style="text-align: center;" onclick="proposition2_form.submit()">
+                    <th class="proposition_th" id="proposition2_th" style="text-align: center;" onclick="validate('proposition2_form');">
                         {{ proposition2 }}
                     </th>
                 </tr>
             </form>
         </table>
+        <span id="player2_pseudo" style="display: none">{{ participant2 }}</span>
     </div>
+    <div id="animate"><span id="score">+750</span></div>
 
 </div>
+
 {% endblock %}

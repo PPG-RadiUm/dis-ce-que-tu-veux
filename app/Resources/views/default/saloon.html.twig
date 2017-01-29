@@ -7,7 +7,14 @@
     <input id="player_pseudo" type="hidden" value="{{ app.user.username }}"/>
     <section class="main-section" id="saloon">
         <h2>Saloon</h2>
-        <h6>Consulter les salles de jeu disponibles.</h6>
+
+        <form style="text-align:center;" method="GET" action="/lobby">
+            Rejoindre via un code :
+            <input size="4" type="text" name="lobby_code"/>
+            <input class="link animated fadeInUp delay-05s saloonCodeEntry" type="submit" value="Entrer"/>
+        </form>
+
+        <h6>Consulter les salles de jeu disponibles</h6>
         <div class="container">
             <table id="saloonTable" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
                 <tr class="active">
