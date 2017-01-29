@@ -1,4 +1,4 @@
-# Dis ce que tu veux
+# Dis ce que tu veux [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 Application Web - Dis ce que tu veux - Développée dans le cadre du projet PLATINE du Master Informatique E-services à l'Université Lille 1
 
 ## Installation
