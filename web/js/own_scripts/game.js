@@ -68,6 +68,8 @@ function updateTimer() {
                     $("#player_" + player_id).addClass("participant_ready");
                     player_id++;
                 }
+            } else {
+                document.getElementById('proposition_form').submit();
             }
         }
 
