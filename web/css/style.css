@@ -1035,3 +1035,8 @@ border: 2px solid #fff;
 	background: linear-gradient(to right, #3498db 30%, #e67e22 0%);
 	color: #000;
 }
+
+.proposition_th{
+	user-select: none;
+	cursor: pointer;
+}
