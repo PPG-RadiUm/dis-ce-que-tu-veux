@@ -1,16 +1,16 @@
-var time = 20;
+var time = 13;
 var playersArray = ["player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
 var playersArraySpect = ["player_0", "player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
 var playersScore =
 {
-    "player_0" : 0,
-    "player_1" : 0,
-    "player_2" : 0,
-    "player_3" : 0,
-    "player_4" : 0,
-    "player_5" : 0,
-    "player_6" : 0,
-    "player_7" : 0
+    "Test" : 0,
+    "RadiUm" : 0,
+    "Lina" : 0,
+    "Henry Michel" : 0,
+    "Shou" : 0,
+    "Kévin" : 0,
+    "Clém" : 0,
+    "Tatawa" : 0
 };
 var tempPlayer = null;
 
@@ -31,6 +31,7 @@ function validate(form_id) {
     document.getElementById("player1_pseudo").style.visibility = "visible";
     document.getElementById("player2_pseudo").style.visibility = "visible";
 
+    console.log("HEY HO");
 
     if(form_id == 'proposition1_form') {
         $("#player_0").addClass("vote_proposition1");
@@ -38,13 +39,29 @@ function validate(form_id) {
         $("#player_0").addClass("vote_proposition2");
     }
 
-    $("#player_1").addClass("vote_proposition1");
+    playersArray = ["player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
+    shuffle(playersArray);
+
+    var i = 0;
+
+    while(i <= 7){
+        if(Math.random() >= 0.5){
+            $("#"+playersArray[i]).addClass("vote_proposition1");
+            playersScore[document.getElementById("player1_pseudo")] += 1;
+        }else{
+            $("#"+playersArray[i]).addClass("vote_proposition2");
+            playersScore[document.getElementById("player2_pseudo")] += 1;
+        }
+        i++;
+    }
+
+    /*$("#player_1").addClass("vote_proposition1");
     $("#player_2").addClass("vote_proposition2");
     $("#player_3").addClass("vote_proposition1");
     $("#player_4").addClass("vote_proposition2");
     $("#player_5").addClass("vote_proposition2");
     $("#player_6").addClass("vote_proposition1");
-    $("#player_7").addClass("vote_proposition1");
+    $("#player_7").addClass("vote_proposition1");*/
 
 
     //$("#animate").css("display", "block");
