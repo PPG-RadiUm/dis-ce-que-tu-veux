@@ -191,7 +191,7 @@ class DefaultController extends Controller
                 // On entre dans la phase de jeu en tant que participant
                 return $this->render('game/game_stage_participant.html.twig');
 
-            } else if($data['game_stage_audience'])){
+            } else if(isset($data['game_stage_audience'])){
 
                 // On entre dans la phase de jeu en tant que jury
                 return $this->render('game/game_stage_audience.html.twig');
