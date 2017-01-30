@@ -58,14 +58,14 @@ function updateTimer() {
             if(player_id < 7) {
                 if (time <= 10 && time % 2 == 0) {
 
-                    $("#player_" + player_id).append("<img src=\"{{ asset('img/participant_validate.svg') }}\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
+                    $("#player_" + player_id).append("<img src=\"img/participant_validate.svg\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
                     player_id++;
 
                 } else if (time <= 10 && time % 3 == 0) {
-                    $("#player_" + player_id).append("<img src=\"{{ asset('img/participant_validate.svg') }}\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
+                    $("#player_" + player_id).append("<img src=\"img/participant_validate.svg\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
                     player_id++;
 
-                    $("#player_" + player_id).append("<img src=\"{{ asset('img/participant_validate.svg') }}\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
+                    $("#player_" + player_id).append("<img src=\"img/participant_validate.svg\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
                     player_id++;
                 }
             }
