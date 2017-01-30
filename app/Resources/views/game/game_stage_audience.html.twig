@@ -19,8 +19,8 @@
     <div id="div_table_participants" class="">
         <table id="table_participants">
             <tr>
-                <td class="participant_ready">Test</td>
-                <td class="participant_ready">Radium</td>
+                <td class="active">Test</td>
+                <td class="active">Radium</td>
                 <td>Tatawa</td>
                 <td>Chou</td>
 
@@ -31,5 +31,10 @@
             </tr>
         </table>
     </div>
+
+
+    <form action="/game" method="POST" name="proposition_form" id="proposition_form">
+        <input type="hidden" name="vote_stage" value="vote_stage"/>
+    </form>
 </div>
 {% endblock %}

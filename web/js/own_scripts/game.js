@@ -12,7 +12,8 @@ function validate(form_id) {
     document.getElementById("player1_pseudo").style.display = "inline";
     document.getElementById("player2_pseudo").style.display = "inline";
 
-    $("#animate").css("display", "block");
+    //$("#animate").css("display", "block");
+    $("#animate").css("visibility", "visible");
     var pos = 0;
 
     // On invoque la fonction frame() toutes les 2ms (500 FPS)
