@@ -974,3 +974,35 @@ border: 2px solid #fff;
 .participant_ready {
 	background-color: lightgray;
 }
+
+#table_participants {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	table-layout: fixed;
+}
+
+#table_participants caption {
+	font-size: 1.5em;
+	margin: .5em 0 .75em;
+}
+
+#table_participants tr {
+	background: #f8f8f8;
+	border: 1px solid #ddd;
+	padding: .35em;
+}
+
+#table_participants th,
+#table_participants td {
+	padding: .625em;
+	text-align: center;
+}
+
+#table_participants th {
+	font-size: .85em;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}

@@ -60,7 +60,10 @@
                 </tr>
             </table>
             <br>
-            <a href="/game" id="createButton" class="link animated fadeInUp delay-05s"/>Refaire une manche</a>
+
+            <form action="/game" method="POST">
+                <input type="submit" id="createButton" class="link animated fadeInUp delay-05s" name="game_stage_participant" value="Refaire une manche"/>
+            </form>
         </div>
     </div>
 </div>
