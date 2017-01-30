@@ -51,8 +51,6 @@ function updateTimer() {
     time--;
 
     if(time >= 0) {
-        setTimeout(updateTimer, 1000);
-    } else {
 
         console.log($('#div_table_participants_game_stage').length);
         // Si on est dans la vue jury de la phase de jeu
@@ -74,6 +72,9 @@ function updateTimer() {
                 }
             }
         }
+
+        setTimeout(updateTimer, 1000);
+    } else {
 
         if($('#proposition_form').length > 0){
             // Cas de la phase de jeu (il faut faire une proposition)
