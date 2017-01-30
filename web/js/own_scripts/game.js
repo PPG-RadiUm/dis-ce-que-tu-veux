@@ -1,8 +1,25 @@
 var time = 20;
-var player_id = 0;
-var player_id2 = 1;
+var playersArray = ["player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
+var playersArraySpect = ["player_0", "player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
+var playersScore =
+{
+    "player_0" : 0,
+    "player_1" : 0,
+    "player_2" : 0,
+    "player_3" : 0,
+    "player_4" : 0,
+    "player_5" : 0,
+    "player_6" : 0,
+    "player_7" : 0
+};
+var tempPlayer = null;
 
-$( window ).on( "load", function() {
+    $( window ).on( "load", function() {
+    shuffle(playersArray);
+    shuffle(playersArraySpect);
+    console.log(playersArray);
+    console.log(playersArraySpect);
+
     // Vérifie qu'il existe un élément dont l'id est game_timer, si c'est le cas, démarre le timer
     if ($('#game_timer').length > 0) {
         updateTimer();
@@ -69,40 +86,43 @@ function updateTimer() {
         // Si on est dans la vue jury de la phase de jeu
         if($('#div_table_participants_game_stage').length > 0){
 
-            if(player_id < 7) {
+            if(playersArray.length > 0) {
                 if (time <= 10 && time % 2 == 0) {
 
-                    $("#player_" + player_id).addClass("participant_ready");
-                    player_id++;
+                    tempPlayer = playersArraySpect[playersArraySpect.length-1];
+                    $("#"+tempPlayer).addClass("participant_ready");
+                    playersArraySpect = playersArraySpect.slice(0,-1);
 
                 } else if (time <= 10 && time % 3 == 0) {
-                    $("#player_" + player_id).addClass("participant_ready");
-                    player_id++;
+                    tempPlayer = playersArraySpect[playersArraySpect.length-1];
+                    $("#"+tempPlayer).addClass("participant_ready");
+                    playersArraySpect = playersArraySpect.slice(0,-1);
 
-                    $("#player_" + player_id).addClass("participant_ready");
-                    player_id++;
+                    tempPlayer = playersArraySpect[playersArraySpect.length-1];
+                    $("#"+tempPlayer).addClass("participant_ready");
+                    playersArraySpect = playersArraySpect.slice(0,-1);
                 }
             }
         }
 
-        // Si on est dans la vue jury de la phase de vote
+        // Si on est dans la phase de vote
         if($('#div_table_participants_vote_stage').length > 0){
 
-            if(player_id2 < 8) {
+            if(playersArraySpect.length > 0) {
                 if (time <= 10 && time % 2 == 0) {
-
-                    $("#player_" + player_id2).addClass("participant_ready");
-                    player_id2++;
+                    tempPlayer = playersArraySpect[playersArraySpect.length-1];
+                    $("#"+tempPlayer).addClass("participant_ready");
+                    playersArraySpect = playersArraySpect.slice(0,-1);
 
                 } else if (time <= 10 && time % 3 == 0) {
-                    $("#player_" + player_id2).addClass("participant_ready");
-                    player_id2++;
+                    tempPlayer = playersArraySpect[playersArraySpect.length-1];
+                    $("#"+tempPlayer).addClass("participant_ready");
+                    playersArraySpect = playersArraySpect.slice(0,-1);
 
-                    $("#player_" + player_id2).addClass("participant_ready");
-                    player_id2++;
+                    tempPlayer = playersArraySpect[playersArraySpect.length-1];
+                    $("#"+tempPlayer).addClass("participant_ready");
+                    playersArraySpect = playersArraySpect.slice(0,-1);
                 }
-            } else {
-                document.getElementById('proposition_form').submit();
             }
         }
 
@@ -120,6 +140,15 @@ function updateTimer() {
     }
 }
 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+}
 
 // Obsolète pour le moment
 function proposalSubmitted() {
