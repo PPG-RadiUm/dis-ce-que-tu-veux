@@ -1022,3 +1022,11 @@ border: 2px solid #fff;
 	background-color: #e67e22;
 	color: #000;
 }
+
+#score_left {
+	color: #3498db;
+}
+
+#score_right {
+	color: #e67e22;
+}
