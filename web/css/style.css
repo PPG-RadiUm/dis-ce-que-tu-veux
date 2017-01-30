@@ -925,6 +925,8 @@ border: 2px solid #fff;
 }
 
 .leaderboard_content td {
+	padding-bottom: 4px;
+	padding-top: 4px;
 }
 
 #animate {
