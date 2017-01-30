@@ -31,8 +31,6 @@ function validate(form_id) {
     document.getElementById("player1_pseudo").style.visibility = "visible";
     document.getElementById("player2_pseudo").style.visibility = "visible";
 
-    console.log("HEY HO");
-
     if(form_id == 'proposition1_form') {
         $("#player_0").addClass("vote_proposition1");
     } else {
@@ -47,22 +45,18 @@ function validate(form_id) {
     while(i <= 7){
         if(Math.random() >= 0.5){
             $("#"+playersArray[i]).addClass("vote_proposition1");
-            playersScore[document.getElementById("player1_pseudo")] += 1;
+            playersScore[document.getElementById("player1_pseudo").innerHTML] += 1;
         }else{
             $("#"+playersArray[i]).addClass("vote_proposition2");
-            playersScore[document.getElementById("player2_pseudo")] += 1;
+            playersScore[document.getElementById("player2_pseudo").innerHTML] += 1;
         }
         i++;
     }
 
-    /*$("#player_1").addClass("vote_proposition1");
-    $("#player_2").addClass("vote_proposition2");
-    $("#player_3").addClass("vote_proposition1");
-    $("#player_4").addClass("vote_proposition2");
-    $("#player_5").addClass("vote_proposition2");
-    $("#player_6").addClass("vote_proposition1");
-    $("#player_7").addClass("vote_proposition1");*/
-
+    var votePublicFor1 = Math.round(15 * Math.random());
+    playersScore[document.getElementById("player1_pseudo").innerHTML] += votePublicFor1;
+    var votePublicFor2 = 15 - votePublicFor1;
+    playersScore[document.getElementById("player2_pseudo").innerHTML] += votePublicFor2;
 
     //$("#animate").css("display", "block");
     $("#animate").css("visibility", "visible");
