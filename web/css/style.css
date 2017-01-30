@@ -1030,3 +1030,8 @@ border: 2px solid #fff;
 #score_right {
 	color: #e67e22;
 }
+
+.td_audience {
+	background: linear-gradient(to right, #3498db 30%, #e67e22 0%);
+	color: #000;
+}
