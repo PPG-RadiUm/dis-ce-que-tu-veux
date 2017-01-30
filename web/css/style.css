@@ -987,7 +987,7 @@ border: 2px solid #fff;
 	position: fixed;
 	bottom: 100px;
 	width: 75vw;
-	left: 12.5px;
+	left: 12.5vw;
 }
 
 #table_participants caption {
@@ -1019,4 +1019,5 @@ border: 2px solid #fff;
 
 .vote_proposition2 {
 	background-color: #e67e22;
+	color: #000;
 }

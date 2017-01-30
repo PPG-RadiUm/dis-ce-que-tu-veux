@@ -11,11 +11,11 @@
 
 
     <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
-        <table id="proposition1" class="table table-hover table-bordered table-responsive" style="background-color: #3498db !important; height: 10px; overflow:auto;">
+        <table id="proposition1" class="table table-hover table-bordered table-responsive" style=" height: 10px; overflow:auto;">
             <form action="game" method="POST" id="proposition1_form" name="proposition1_form">
             <tr class="active">
                 <input type="hidden" name="{{ next_post }}"/>
-                <th class="proposition_th" id="proposition1_th" style="text-align: center" onclick="validate('proposition1_form')">
+                <th class="proposition_th" id="proposition1_th" style="background-color: #3498db !important; color: #000; text-align: center" onclick="validate('proposition1_form')">
                     {{ proposition1 }}
                 </th>
             </tr>
@@ -25,11 +25,11 @@
     </div>
 
     <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s animated">
-        <table id="proposition2" class="table table-hover table-bordered table-responsive" style="background-color: #e67e22 !important; height: 10px; overflow:auto;">
+        <table id="proposition2" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
             <form action="game" method="POST" id="proposition2_form" name="proposition2_form">
                 <tr class="active">
                     <input type="hidden" name="{{ next_post }}"/>
-                    <th class="proposition_th" id="proposition2_th" style="text-align: center;" onclick="validate('proposition2_form');">
+                    <th class="proposition_th" id="proposition2_th" style="background-color: #e67e22 !important; color: #000;text-align: center;" onclick="validate('proposition2_form');">
                         {{ proposition2 }}
                     </th>
                 </tr>
