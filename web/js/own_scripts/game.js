@@ -10,8 +10,9 @@ $( window ).on( "load", function() {
 
 function validate(form_id) {
     // On affiche les participants qui ont fait les propositions
-    document.getElementById("player1_pseudo").style.display = "inline";
-    document.getElementById("player2_pseudo").style.display = "inline";
+    document.getElementById("player1_pseudo").style.visibility = "visible";
+    document.getElementById("player2_pseudo").style.visibility = "visible";
+
 
     //$("#animate").css("display", "block");
     $("#animate").css("visibility", "visible");
@@ -53,6 +54,7 @@ function updateTimer() {
         setTimeout(updateTimer, 1000);
     } else {
 
+        console.log($('#div_table_participants_game_stage').length);
         // Si on est dans la vue jury de la phase de jeu
         if($('#div_table_participants_game_stage').length > 0){
             console.log('audience_game_stage avec player_id = '+player_id);
