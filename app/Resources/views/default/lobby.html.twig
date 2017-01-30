@@ -79,9 +79,11 @@
 
                     <div class="col-lg-12 col-sm-12 wow">
                         <div class="service-list">
-                            <!-- Ajouter un style="display: none;" pour la version finale [Enlever ici pour des raisons de test] -->
-                            <a id="createButton" class="link animated fadeInUp delay-05s"
-                               href="/game">Lancer la partie !</a>
+                            <form action="/game" method="POST">
+                                <!-- Ajouter un style="display: none;" pour la version finale [Enlever ici pour des raisons de test] -->
+                                <input type="submit" id="createButton" class="link animated fadeInUp delay-05s" name="game_stage_participant">Lancer la partie ! (Participant)</input>
+                                <input type="submit" id="createButton" class="link animated fadeInUp delay-05s" name="game_stage_audience">Lancer la partie ! (Jury)</input>
+                            </form>
                         </div>
                     </div>
         </div>

@@ -1,0 +1,35 @@
+{% extends 'default/game.html.twig' %}
+
+{% block content %}
+<div id="game_timer"></div>
+<div id="game_code">R2D2</div>
+<div id="float_clear"></div>
+
+<h2>Phase de jeu</h2>
+
+<div class="container" style="text-align:center">
+    <div class="col-lg-12 col-sm-12 wow">
+        <div class="service-list">
+            Veuillez patienter...<br/>
+            Les participants sont en train de faire leur choix.
+        </div>
+    </div>
+
+    <!-- Liste des participants -->
+    <div id="div_table_participants">
+        <table id="table_participants">
+            <tr>
+                <td class="participant_ready">Test</td>
+                <td class="participant_ready">Radium</td>
+                <td>Tatawa</td>
+                <td>Chou</td>
+
+                <td>Lina</td>
+                <td>Kevin</td>
+                <td>HenryMichel</td>
+                <td>Clém</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

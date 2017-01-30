@@ -186,7 +186,17 @@ class DefaultController extends Controller
             $data = $request->request->all();
 
             // On entre dans la phase de vote
-            if(isset($data['vote_stage'])){
+            if(isset($data['game_stage_participant'])) {
+                // TODO : Selon le type de joueur (participant ou audience), on utilise une vue différente
+                // On entre dans la phase de jeu en tant que participant
+                return $this->render('game/game_stage_participant.html.twig');
+
+            } else if($data['game_stage_audience'])){
+
+                // On entre dans la phase de jeu en tant que jury
+                return $this->render('game/game_stage_audience.html.twig');
+
+            } else if(isset($data['vote_stage'])){
 
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le pire cadeau d'anniversaire",
@@ -220,10 +230,6 @@ class DefaultController extends Controller
                 return $this->render('game/leaderboard_stage.html.twig', []);
             }
 
-        } else {
-            // TODO : Selon le type de joueur (participant ou audience), on utilise une vue différente
-            // On entre dans la phase de jeu
-            return $this->render('game/game_stage_participant.html.twig');
         }
 
     }

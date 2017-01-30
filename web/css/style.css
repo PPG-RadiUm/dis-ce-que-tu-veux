@@ -967,3 +967,10 @@ border: 2px solid #fff;
 	text-align: center;
 	font-size: 35px;
 }
+
+/*
+	Quand un participant a fini de faire sa proposition, cela modifie la vue du jury
+*/
+.participant_ready {
+	background-color: lightgray;
+}
