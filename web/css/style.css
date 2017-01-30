@@ -922,6 +922,7 @@ border: 2px solid #fff;
 
 .leaderboard_content th {
 	text-align: center !important;
+	background-color: #f5f5f5;
 }
 
 .leaderboard_content td {
@@ -984,6 +985,7 @@ border: 2px solid #fff;
 	padding: 0;
 	width: 100%;
 	table-layout: fixed;
+	margin-top: 80px;
 }
 
 #table_participants caption {
