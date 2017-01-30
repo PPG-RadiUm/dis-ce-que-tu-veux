@@ -15,8 +15,8 @@ function validate(form_id) {
     $("#animate").css("display", "block");
     var pos = 0;
 
-    // On invoque la fonction frame() toutes les 1ms (1000 FPS)
-    var id = setInterval(frame, 1);
+    // On invoque la fonction frame() toutes les 2ms (500 FPS)
+    var id = setInterval(frame, 2);
     function frame() {
 
         // Quand le score est positionné à 50%, on arrête et on change de page
