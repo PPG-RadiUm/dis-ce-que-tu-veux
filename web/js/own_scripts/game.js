@@ -52,22 +52,20 @@ function updateTimer() {
 
     if(time >= 0) {
 
-        console.log($('#div_table_participants_game_stage').length);
         // Si on est dans la vue jury de la phase de jeu
         if($('#div_table_participants_game_stage').length > 0){
-            console.log('audience_game_stage avec player_id = '+player_id);
 
             if(player_id < 7) {
                 if (time <= 10 && time % 2 == 0) {
-                    console.log('on ajoute la classe au player n°'+player_id);
-                    $("#player_" + player_id).addClass("participant_ready");
+
+                    $("#player_" + player_id).append("<img src=\"{{ asset('img/participant_validate.svg') }}\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
                     player_id++;
+
                 } else if (time <= 10 && time % 3 == 0) {
-                    console.log('on ajoute la classe au player n°'+player_id);
-                    $("#player_" + player_id).addClass("participant_ready");
+                    $("#player_" + player_id).append("<img src=\"{{ asset('img/participant_validate.svg') }}\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
                     player_id++;
-                    console.log('on ajoute la classe au player n°'+player_id);
-                    $("#player_" + player_id).addClass("participant_ready");
+
+                    $("#player_" + player_id).append("<img src=\"{{ asset('img/participant_validate.svg') }}\" alt=\"ok\" height=\"26px\" width=\"26px\" />");
                     player_id++;
                 }
             }
