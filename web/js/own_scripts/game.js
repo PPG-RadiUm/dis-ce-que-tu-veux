@@ -15,6 +15,21 @@ function validate(form_id) {
     document.getElementById("player2_pseudo").style.visibility = "visible";
 
 
+    if(form_id == 'proposition1_form') {
+        $("#player_0").addClass("vote_proposition1");
+    } else {
+        $("#player_0").addClass("vote_proposition2");
+    }
+
+    $("#player_1").addClass("vote_proposition1");
+    $("#player_2").addClass("vote_proposition2");
+    $("#player_3").addClass("vote_proposition1");
+    $("#player_4").addClass("vote_proposition2");
+    $("#player_5").addClass("vote_proposition2");
+    $("#player_6").addClass("vote_proposition1");
+    $("#player_7").addClass("vote_proposition1");
+
+
     //$("#animate").css("display", "block");
     $("#animate").css("visibility", "visible");
     var pos = 0;
@@ -72,21 +87,21 @@ function updateTimer() {
             }
         }
 
-        // Si on est dans la vue jury de la phase de jeu
+        // Si on est dans la vue jury de la phase de vote
         if($('#div_table_participants_vote_stage').length > 0){
 
             if(player_id2 < 7) {
                 if (time <= 10 && time % 2 == 0) {
 
-                    $("#player_" + player_id2).addClass("vote_proposition1");
-                    player_id++;
+                    $("#player_" + player_id2).addClass("participant_ready");
+                    player_id2++;
 
                 } else if (time <= 10 && time % 3 == 0) {
-                    $("#player_" + player_id2).addClass("vote_proposition2");
-                    player_id++;
+                    $("#player_" + player_id2).addClass("participant_ready");
+                    player_id2++;
 
-                    $("#player_" + player_id2).addClass("vote_proposition1");
-                    player_id++;
+                    $("#player_" + player_id2).addClass("participant_ready");
+                    player_id2++;
                 }
             } else {
                 document.getElementById('proposition_form').submit();
