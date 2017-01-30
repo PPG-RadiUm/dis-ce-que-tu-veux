@@ -90,7 +90,7 @@ function updateTimer() {
         // Si on est dans la vue jury de la phase de vote
         if($('#div_table_participants_vote_stage').length > 0){
 
-            if(player_id2 < 7) {
+            if(player_id2 < 8) {
                 if (time <= 10 && time % 2 == 0) {
 
                     $("#player_" + player_id2).addClass("participant_ready");
