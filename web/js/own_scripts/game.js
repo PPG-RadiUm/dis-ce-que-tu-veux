@@ -1,4 +1,5 @@
-var time = 15;
+var time = 20;
+var player_id = 0;
 
 $( window ).on( "load", function() {
     // Vérifie qu'il existe un élément dont l'id est game_timer, si c'est le cas, démarre le timer
@@ -51,6 +52,21 @@ function updateTimer() {
     if(time >= 0) {
         setTimeout(updateTimer, 1000);
     } else {
+
+        // Si on est dans la vue jury de la phase de jeu
+        if($('#table_participants').length > 0){
+            if(player_id < 7) {
+                if (time <= 10 && time % 2 == 0) {
+                    $("#player_" + player_id).addClass("participant_ready");
+                    player_id++;
+                } else if (time <= 10 && time % 3 == 0) {
+                    $("#player_" + player_id).addClass("participant_ready");
+                    player_id++;
+                    $("#player_" + player_id).addClass("participant_ready");
+                    player_id++;
+                }
+            }
+        }
 
         if($('#proposition_form').length > 0){
             // Cas de la phase de jeu (il faut faire une proposition)
