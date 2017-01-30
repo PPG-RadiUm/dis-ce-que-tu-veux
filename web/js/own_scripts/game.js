@@ -1,5 +1,6 @@
 var time = 20;
 var player_id = 0;
+var player_id2 = 1;
 
 $( window ).on( "load", function() {
     // Vérifie qu'il existe un élément dont l'id est game_timer, si c'est le cas, démarre le timer
@@ -66,6 +67,25 @@ function updateTimer() {
                     player_id++;
 
                     $("#player_" + player_id).addClass("participant_ready");
+                    player_id++;
+                }
+            }
+        }
+
+        // Si on est dans la vue jury de la phase de jeu
+        if($('#div_table_participants_vote_stage').length > 0){
+
+            if(player_id2 < 7) {
+                if (time <= 10 && time % 2 == 0) {
+
+                    $("#player_" + player_id2).addClass("vote_proposition1");
+                    player_id++;
+
+                } else if (time <= 10 && time % 3 == 0) {
+                    $("#player_" + player_id2).addClass("vote_proposition2");
+                    player_id++;
+
+                    $("#player_" + player_id2).addClass("vote_proposition1");
                     player_id++;
                 }
             } else {
