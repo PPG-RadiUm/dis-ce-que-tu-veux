@@ -929,6 +929,7 @@ border: 2px solid #fff;
 
 #animate {
 	/*display: none;*/
+	display: block;
 	visibility: hidden;
 	text-align: center;
 	margin: 0px;
