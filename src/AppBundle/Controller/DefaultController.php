@@ -201,21 +201,21 @@ class DefaultController extends Controller
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le pire cadeau d'anniversaire",
                         "proposition1" => empty($data['answer'])?'Aucune réponse donnée :(':$data['answer'], "proposition2" => "Du déodorant",
-                        "participant1" => "Test", "participant2" => "Radium",
+                        "participant1" => "Test", "participant2" => "RadiUm",
                         "next_post" => "vote_stage2"]);
 
             } else if(isset($data['vote_stage2'])){
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le pire métier du monde",
                         "proposition1" => "Pousseur dans le métro", "proposition2" => "Homme politique",
-                        "participant1" => "Lina", "participant2" => "HenryMichel",
+                        "participant1" => "Lina", "participant2" => "Henry Michel",
                         "next_post" => "vote_stage3"]);
 
             } else if(isset($data['vote_stage3'])){
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le nom de votre entreprise de vente de bateaux",
                         "proposition1" => "Ca m'boat", "proposition2" => "A voile et à vapeur",
-                        "participant1" => "Chou", "participant2" => "Kevin",
+                        "participant1" => "Shou", "participant2" => "Kévin",
                         "next_post" => "vote_stage4"]);
 
             } else if(isset($data['vote_stage4'])){
