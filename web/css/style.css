@@ -985,7 +985,8 @@ border: 2px solid #fff;
 	padding: 0;
 	width: 100%;
 	table-layout: fixed;
-	margin-top: 80px;
+	position: fixed;
+	bottom: 100px;
 }
 
 #table_participants caption {
