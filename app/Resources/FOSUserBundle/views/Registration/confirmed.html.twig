@@ -3,7 +3,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <h6 style="align-content: center; margin-top: 25vh; font-size: 4vh;">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h6>
+    <img style="align-content: center; margin-left: 45vw;" src="{{ asset('img/Icone.svg') }}">
     {% if targetUrl %}
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
