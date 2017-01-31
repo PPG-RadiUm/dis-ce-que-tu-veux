@@ -30,7 +30,7 @@
                         <td>Partie de {{ room.host.pseudo }}</td>
                         <td>{{ room.participants|length }}/{{ room.capParticipants }}</td>
                         <td>{{ room.audience|length }}</td>
-                        <td>{{ room.state }}</td>
+                        <td>En attente de joueurs</td>
                         <td style="text-align: center">
                             <form action="/lobby" method="post" style="display: inline-block; margin: 0; padding-right: 5px;">
                                 <input type="hidden" name="lobby_id" value="{{ room.id }}"/>
