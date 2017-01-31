@@ -1,4 +1,4 @@
-var time = 13;
+var time = 20;
 var playersArray = ["player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
 var playersArraySpect = ["player_0", "player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
 
@@ -123,7 +123,7 @@ function validate(form_id) {
 
             setTimeout(function () {
                 document.getElementById(form_id).submit();
-            }, 5000);
+            }, 3000);
         } else {
             pos = pos + 0.5;
 

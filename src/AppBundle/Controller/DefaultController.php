@@ -219,7 +219,7 @@ class DefaultController extends Controller
 
             } else if(isset($data['vote_stage'])){
                 $dataScores = [
-                    "Test",
+                    "Nico",
                     "RadiUm",
                     "Lina",
                     "Henry Michel",
@@ -232,7 +232,7 @@ class DefaultController extends Controller
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le pire cadeau d'anniversaire",
                         "proposition1" => empty($data['answer'])?'Du papier cadeau':$data['answer'], "proposition2" => "Du déodorant",
-                        "participant1" => "Test", "participant2" => "RadiUm",
+                        "participant1" => "Nico", "participant2" => "RadiUm",
                         "next_post" => "vote_stage2",
                         "scores" => $dataScores]);
 
