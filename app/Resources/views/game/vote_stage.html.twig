@@ -13,12 +13,13 @@
     <div class="col-lg-6 col-sm-6 wow fadeInLeft delay-05s animated">
         <table id="proposition1" class="table table-hover table-bordered table-responsive" style=" height: 10px; overflow:auto;">
             <form action="game" method="POST" id="proposition1_form" name="proposition1_form">
-            <tr class="active">
+                <input type="hidden" id="scores_1" name="scores_1" value="{{ scores|json_encode }}"/>
                 <input type="hidden" name="{{ next_post }}"/>
-                <th class="proposition_th" id="proposition1_th" style="background-color: #3498db !important; color: #000; text-align: center" onclick="validate('proposition1_form')">
-                    {{ proposition1 }}
-                </th>
-            </tr>
+                <tr class="active">
+                    <th class="proposition_th" id="proposition1_th" style="background-color: #3498db !important; color: #000; text-align: center" onclick="validate('proposition1_form')">
+                        {{ proposition1 }}
+                    </th>
+                </tr>
             </form>
         </table>
         <span id="player1_pseudo" style="visibility: hidden; display:inline;">{{ participant1 }}</span>
@@ -27,8 +28,9 @@
     <div class="col-lg-6 col-sm-6 wow fadeInRight delay-05s animated">
         <table id="proposition2" class="table table-hover table-bordered table-responsive" style="height: 10px; overflow:auto;">
             <form action="game" method="POST" id="proposition2_form" name="proposition2_form">
+                <input type="hidden" id="scores_2" name="scores_2" value="{{ scores|json_encode }}"/>
+                <input type="hidden" name="{{ next_post }}"/>
                 <tr class="active">
-                    <input type="hidden" name="{{ next_post }}"/>
                     <th class="proposition_th" id="proposition2_th" style="background-color: #e67e22 !important; color: #000;text-align: center;" onclick="validate('proposition2_form');">
                         {{ proposition2 }}
                     </th>
@@ -37,23 +39,23 @@
         </table>
         <span id="player2_pseudo" style="visibility: hidden; display:inline;">{{ participant2 }}</span>
     </div>
-    <div id="animate"><span id="score_left">+750</span><span id="score_right">+750</span></div>
+    <div id="animate"><span id="score_left"></span><span id="score_right"></span></div>
 
     <!-- Liste des participants -->
     <div id="div_table_participants_vote_stage">
         <table id="table_participants">
             <tr>
                 <td id="player_0">Test</td>
-                <td id="player_1">Radium</td>
+                <td id="player_1">RadiUm</td>
                 <td id="player_2">Tatawa</td>
-                <td id="player_3">Chou</td>
+                <td id="player_3">Shou</td>
 
                 <td id="player_4">Lina</td>
                 <td id="player_5">Kevin</td>
-                <td id="player_6">HenryMichel</td>
+                <td id="player_6">Henry Michel</td>
                 <td id="player_7">Clém</td>
             </tr>
-            <tr><td class="td_audience" colspan="8">Audience : 15</td></tr>
+            <tr><td id="td_audience" colspan="8">Audience : 15</td></tr>
         </table>
     </div>
 

@@ -197,37 +197,60 @@ class DefaultController extends Controller
                 return $this->render('game/game_stage_audience.html.twig');
 
             } else if(isset($data['vote_stage'])){
+                $dataScores = [
+                    "Test",
+                    "RadiUm",
+                    "Lina",
+                    "Henry Michel",
+                    "Shou",
+                    "Kevin",
+                    "Clem",
+                    "Tatawa"
+                ];
 
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le pire cadeau d'anniversaire",
-                        "proposition1" => empty($data['answer'])?'Aucune réponse donnée :(':$data['answer'], "proposition2" => "Du déodorant",
+                        "proposition1" => empty($data['answer'])?'Du papier cadeau':$data['answer'], "proposition2" => "Du déodorant",
                         "participant1" => "Test", "participant2" => "RadiUm",
-                        "next_post" => "vote_stage2"]);
+                        "next_post" => "vote_stage2",
+                        "scores" => $dataScores]);
 
             } else if(isset($data['vote_stage2'])){
+                var_dump($data);
+                $dataScores = json_decode((isset($data['scores_1'])) ? $data['scores_1'] : $data['scores_2']);
+
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le pire métier du monde",
                         "proposition1" => "Pousseur dans le métro", "proposition2" => "Homme politique",
                         "participant1" => "Lina", "participant2" => "Henry Michel",
-                        "next_post" => "vote_stage3"]);
+                        "next_post" => "vote_stage3",
+                        "scores" => $dataScores]);
 
             } else if(isset($data['vote_stage3'])){
+                $dataScores = json_decode((isset($data['scores_1'])) ? $data['scores_1'] : $data['scores_2']);
+
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le nom de votre entreprise de vente de bateaux",
                         "proposition1" => "Ca m'boat", "proposition2" => "A voile et à vapeur",
-                        "participant1" => "Shou", "participant2" => "Kévin",
-                        "next_post" => "vote_stage4"]);
+                        "participant1" => "Shou", "participant2" => "Kevin",
+                        "next_post" => "vote_stage4",
+                        "scores" => $dataScores]);
 
             } else if(isset($data['vote_stage4'])){
+                $dataScores = json_decode((isset($data['scores_1'])) ? $data['scores_1'] : $data['scores_2']);
+
                 return $this->render('game/vote_stage.html.twig',
                     ["question" => "Le secret d'un repas de Noël réussi",
                         "proposition1" => "Une superbe bûche de glace", "proposition2" => "L'anecdote bien grasse du grand-père",
-                        "participant1" => "Clém", "participant2" => "Tatawa",
-                        "next_post" => "leaderboard_stage"]);
+                        "participant1" => "Clem", "participant2" => "Tatawa",
+                        "next_post" => "leaderboard_stage",
+                        "scores" => $dataScores]);
 
             // On arrive au classement
             } else if(isset($data['leaderboard_stage'])){
-                return $this->render('game/leaderboard_stage.html.twig', []);
+                $dataScores = json_decode((isset($data['scores_1'])) ? $data['scores_1'] : $data['scores_2']);
+
+                return $this->render('game/leaderboard_stage.html.twig', ["scores" => $dataScores]);
             }
 
         }

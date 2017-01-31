@@ -1,6 +1,7 @@
 {% extends 'default/game.html.twig' %}
 
 {% block content %}
+<input type="hidden" id="scores" value="{{ scores|json_encode }}"/>
 <h2>Scores</h2>
 <div style="text-align:center">
     <div class="col-lg-12 col-sm-12 wow">
@@ -13,50 +14,50 @@
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;1<img src="{{ asset("img/gold-medal.svg") }}" height="30px" width="30px" alt="gold-medal"/></td>
-                    <td>HenryMichel</td>
-                    <td>9300</td>
+                    <td id="Cpseudo_1">HenryMichel</td>
+                    <td id="Cscore_1">9300</td>
                 </tr>
 
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;2<img src="{{ asset("img/silver-medal.svg") }}" height="30px" width="30px"  alt="silver-medal"/></td>
-                    <td>Radium</td>
-                    <td>7000</td>
+                    <td id="Cpseudo_2">Radium</td>
+                    <td id="Cscore_2">7000</td>
                 </tr>
 
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;3<img src="{{ asset("img/bronze-medal.svg") }}" height="30px" width="30px"  alt="bronze-medal"/></td>
-                    <td>Chou</td>
-                    <td>6800</td>
+                    <td id="Cpseudo_3">Chou</td>
+                    <td id="Cscore_3">6800</td>
                 </tr>
 
                 <tr>
                     <td>4</td>
-                    <td>Tatawa</td>
-                    <td>5400</td>
+                    <td id="Cpseudo_4">Tatawa</td>
+                    <td id="Cscore_4">5400</td>
                 </tr>
 
                 <tr>
                     <td>5</td>
-                    <td>Clém</td>
-                    <td>4700</td>
+                    <td id="Cpseudo_5">Clém</td>
+                    <td id="Cscore_5">4700</td>
                 </tr>
 
                 <tr>
                     <td>6</td>
-                    <td>Lina</td>
-                    <td>4200</td>
+                    <td id="Cpseudo_6">Lina</td>
+                    <td id="Cscore_6">4200</td>
                 </tr>
 
                 <tr>
                     <td>7</td>
-                    <td>Test</td>
-                    <td>3600</td>
+                    <td id="Cpseudo_7">Test</td>
+                    <td id="Cscore_7">3600</td>
                 </tr>
 
                 <tr>
                     <td>8</td>
-                    <td>Kevin</td>
-                    <td>900</td>
+                    <td id="Cpseudo_8">Kevin</td>
+                    <td id="Cscore_8">900</td>
                 </tr>
             </table>
             <br>

@@ -1031,11 +1031,6 @@ border: 2px solid #fff;
 	color: #e67e22;
 }
 
-.td_audience {
-	background: linear-gradient(to right, #3498db 30%, #e67e22 0%);
-	color: #000;
-}
-
 .proposition_th{
 	user-select: none;
 	cursor: pointer;

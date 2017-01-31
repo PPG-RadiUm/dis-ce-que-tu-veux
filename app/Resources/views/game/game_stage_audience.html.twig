@@ -29,13 +29,14 @@
                 <td id="player_6">Henry Michel</td>
                 <td id="player_7">Clém</td>
             </tr>
-            <tr><td colspan="8">Audience : 12</td></tr>
+            <tr><td id="td_audience" colspan="8">Audience : 12</td></tr>
         </table>
     </div>
 
 
     <form action="/game" method="POST" name="proposition_form" id="proposition_form">
         <input type="hidden" name="vote_stage" value="vote_stage"/>
+        <input type="hidden" name="scores" value="scores"/>
     </form>
 </div>
 {% endblock %}

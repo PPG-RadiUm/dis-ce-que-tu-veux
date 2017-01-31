@@ -1,28 +1,53 @@
 var time = 13;
 var playersArray = ["player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
 var playersArraySpect = ["player_0", "player_1", "player_2", "player_3", "player_4", "player_5", "player_6", "player_7"];
-var playersScore =
-{
-    "Test" : 0,
-    "RadiUm" : 0,
-    "Lina" : 0,
-    "Henry Michel" : 0,
-    "Shou" : 0,
-    "Kévin" : 0,
-    "Clém" : 0,
-    "Tatawa" : 0
-};
+
+var playersScore = null;
 var tempPlayer = null;
 
-    $( window ).on( "load", function() {
+$( window ).on( "load", function() {
     shuffle(playersArray);
     shuffle(playersArraySpect);
     console.log(playersArray);
     console.log(playersArraySpect);
 
+    if($("#scores_1").val() != undefined)
+        playersScore = JSON.parse($("#scores_1").val());
+    
     // Vérifie qu'il existe un élément dont l'id est game_timer, si c'est le cas, démarre le timer
     if ($('#game_timer').length > 0) {
         updateTimer();
+    }
+    if($("#scores").length > 0) {
+        var scoresss = JSON.parse($("#scores").val());
+        var scoresObj = [];
+
+        for(var i = 0; i < scoresss.length; i++){
+            var temp = scoresss[i].split("_");
+            scoresObj[i] = {};
+            scoresObj[i].pseudo = temp[0];
+            scoresObj[i].score = temp[1];
+        }
+
+        var boolCond = true;
+        var cpt = 1;
+
+        while(boolCond){
+            var max = 0;
+            for(i = 0; i < scoresObj.length; i++){
+                if(scoresObj[i].score >= scoresObj[max].score){
+                    //console.log(scoresObj[i]);
+                    max = i;
+                }
+            }
+            document.getElementById("Cpseudo_" + cpt).innerHTML = scoresObj[max].pseudo;
+            document.getElementById("Cscore_" + cpt).innerHTML = scoresObj[max].score;
+            scoresObj[max].score = 0;
+            if(cpt == 8){
+                boolCond = false;
+            }
+            cpt ++;
+        }
     }
 });
 
@@ -41,22 +66,36 @@ function validate(form_id) {
     shuffle(playersArray);
 
     var i = 0;
+    var scoreP1 = 0;
+    var scoreP2 = 0;
 
     while(i <= 7){
         if(Math.random() >= 0.5){
             $("#"+playersArray[i]).addClass("vote_proposition1");
-            playersScore[document.getElementById("player1_pseudo").innerHTML] += 1;
+            scoreP1 += 1;
         }else{
             $("#"+playersArray[i]).addClass("vote_proposition2");
-            playersScore[document.getElementById("player2_pseudo").innerHTML] += 1;
+            scoreP2 += 1;
         }
         i++;
     }
 
     var votePublicFor1 = Math.round(15 * Math.random());
-    playersScore[document.getElementById("player1_pseudo").innerHTML] += votePublicFor1;
-    var votePublicFor2 = 15 - votePublicFor1;
-    playersScore[document.getElementById("player2_pseudo").innerHTML] += votePublicFor2;
+    scoreP1 = Math.round(((scoreP1 + votePublicFor1)/23)*1000);
+    playersScore[playersScore.indexOf(document.getElementById("player1_pseudo").innerHTML)] += "_" + scoreP1;
+    //var votePublicFor2 = 15 - votePublicFor1;
+    scoreP2 = 1000 - scoreP1;
+    playersScore[playersScore.indexOf(document.getElementById("player2_pseudo").innerHTML)] += "_" + scoreP2;
+
+    $("#td_audience").css("background", "linear-gradient(to right, #3498db "+ ((votePublicFor1/15) * 100) +"%, #e67e22 0%)");
+    $("#td_audience").css("color", "black");
+
+    document.getElementById("scores_1").value = JSON.stringify(playersScore);
+    //$("#scores_1").val(JSON.stringify(playersScore));
+    document.getElementById("scores_2").value = JSON.stringify(playersScore);
+    //document.getElementsById("scores_2").value = JSON.stringify(playersScore);
+    //$("#scores_2").val(JSON.stringify(playersScore));
+
 
     //$("#animate").css("display", "block");
     $("#animate").css("visibility", "visible");
@@ -166,7 +205,6 @@ function proposalSubmitted() {
 
     // Envoyer $data['vote_stage']
     $.ajax({
-
         type: "POST",
         url: "{{path('dcqtv_game')}}",
         cache: "false",
