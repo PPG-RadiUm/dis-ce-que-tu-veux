@@ -237,7 +237,6 @@ class DefaultController extends Controller
                         "scores" => $dataScores]);
 
             } else if(isset($data['vote_stage2'])){
-                var_dump($data);
                 $dataScores = json_decode((isset($data['scores_1'])) ? $data['scores_1'] : $data['scores_2']);
 
                 return $this->render('game/vote_stage.html.twig',

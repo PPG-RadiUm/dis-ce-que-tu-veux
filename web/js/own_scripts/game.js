@@ -120,7 +120,10 @@ function validate(form_id) {
             }*/
 
             clearInterval(id);
-            document.getElementById(form_id).submit();
+
+            setTimeout(function () {
+                document.getElementById(form_id).submit();
+            }, 5000);
         } else {
             pos = pos + 0.5;
 
