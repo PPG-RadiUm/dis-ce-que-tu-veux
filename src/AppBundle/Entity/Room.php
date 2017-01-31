@@ -78,12 +78,14 @@ class Room
         if(is_array($this->participants) && (empty($this->participants) || count($this->participants) < $this->capParticipants)) {
 
             $player->room = $this;
+            $player->room2 = null;
             array_push($this->participants, $player);
             return true;
 
         } else if(is_object($this->participants)){
 
             $player->room = $this;
+            $player->room2 = null;
             $this->participants->add($player);
             return true;
 
@@ -101,11 +103,29 @@ class Room
     }
 
     /**
+     * Vérifie si un joueur est déjà présent dans la liste des participants
+     */
+    public function checkIsParticipant(Player $player)
+    {
+        if(is_array($this->participants)){
+            return in_array($player, $this->participants);
+        }else if(is_object($this->participants)){
+            foreach ($this->participants as $key => $value){
+                if($value == $player)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Ajout d'un membre de l'audience dans le salon
      */
     public function addAudience(Player $player){
         if(count($this->audience) < $this->capAudience){
             $player->room2 = $this;
+            $player->room = null;
             $this->audience->add($player);
             return true;
         } else {
@@ -119,6 +139,23 @@ class Room
     public function removeAudience(Player $player){
         $player->room2 = null;
         unset($this->audience[$player]);
+    }
+
+    /**
+     * Vérifie si un joueur est déjà présent dans la liste des participants
+     */
+    public function checkIsAudience(Player $player)
+    {
+        if(is_array($this->audience)){
+            return in_array($player, $this->audience);
+        }else if(is_object($this->audience)){
+            foreach ($this->audience as $key => $value){
+                if($value == $player)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     public function generateRoomCode(){

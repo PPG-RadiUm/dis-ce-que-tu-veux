@@ -53,8 +53,12 @@
                                 <th id="participants_th" style="text-align: center">Participants ({{ room.participants|length }}/{{ room.capParticipants }})</th>
                             </tr>
                             {% for participant in room.participants %}
-                                {% if participant.id == room.host.id %}
+                                {% if participant.id == room.host.id and participant.id == player_id %}
+                                    <tr><td id="lobby_host" style="font-weight: bold">[HOST] {{ participant.pseudo }}</td></tr>
+                                {% elseif participant.id == room.host.id %}
                                     <tr><td id="lobby_host">[HOST] {{ participant.pseudo }}</td></tr>
+                                {% elseif participant.id == player_id %}
+                                    <tr><td style="font-weight: bold">{{ participant.pseudo }}</td></tr>
                                 {% else %}
                                     <tr><td>{{ participant.pseudo }}</td></tr>
                                 {% endif %}

@@ -42,7 +42,12 @@ class DefaultController extends Controller
      */
     public function lobbyConfigurationAction(Request $request)
     {
-        return $this->render('default/lobby_configuration.html.twig', ["host" => 0]);
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        return $this->render('default/lobby_configuration.html.twig',
+            ["host" => $user->getId(), "host_username" => $user->getUsername()]);
     }
 
     /**
@@ -55,17 +60,25 @@ class DefaultController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }*/
+        $data = $request->request->all();
+
+        $roomRepository = $this->getDoctrine()->getRepository('AppBundle:Room');
 
         $em = $this->getDoctrine()->getManager();
 
+        $doFlush = false;
+
         // TODO : Creer une session invité à l'utilisateur s'il n'est pas connecté, récupérer ses infos sinon
-        $player_host = new Player('test', "room_waiting");
-        $em->persist($player_host);
-        $em->flush();
+        $playerRepository = $this->getDoctrine()->getRepository('AppBundle:Player');
+        $player_host = $playerRepository->findOneByPseudo($data['player_pseudo']);
+        // $player_host == null signifie que ce n'est pas un player existant. On le créé donc
+        if($player_host == null){
+            $player_host = new Player($data['player_pseudo'], "room_waiting");
+            $em->persist($player_host);
+            $em->flush();
+        }
 
         if($request->getMethod() == 'POST'){
-            $data = $request->request->all();
-
             //var_dump($data);
 
             /*
@@ -73,15 +86,13 @@ class DefaultController extends Controller
              * Dans $data, on a 'capParticipants', 'type' et 'host'
              */
             if(isset($data['lobby_creation'])) {
-                $room = new Room($data['capParticipants'], $data['type']);
-                $room->host = $player_host;
-                $room->addParticipant($player_host);
-
-                // tells Doctrine you want to (eventually) save the Room (no queries yet)
-                $em->persist($room);
-
-                // actually executes the queries (i.e. the INSERT query)
-                $em->flush();
+                $room = $roomRepository->findOneByHost($data['host']);
+                if($room == null){
+                    $room = new Room($data['capParticipants'], $data['type']);
+                    $room->host = $player_host;
+                    $room->addParticipant($player_host);
+                    $doFlush = true;
+                }
             }
 
             /*
@@ -89,46 +100,42 @@ class DefaultController extends Controller
              * Dans $data, on a 'player_role', 'player_pseudo'
              */
             if(isset($data['lobby_join'])){
-                $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
-                $room = $repository->find($data['lobby_id']);
-                $new_player = new Player($data['player_pseudo'], 'room_waiting');
-
-                $em->persist($new_player);
-                $em->flush();
-
-                if($data['lobby_player_role'] == "participant"){
-                    $room->addParticipant($new_player);
-                }else if($data['lobby_player_role'] == "jury"){
-                    $room->addAudience($new_player);
+                $room = $roomRepository->find($data['lobby_id']);
+                if(!$room->checkIsParticipant($player_host)){
+                //if(!$room->checkIsParticipant($player_host) && !$room->checkIsAudience($player_host)){
+                    if($data['lobby_player_role'] == "participant"){
+                        $room->addParticipant($player_host);
+                    }else if($data['lobby_player_role'] == "jury"){
+                        $room->addAudience($player_host);
+                    }
                 }
-
-                // tells Doctrine you want to (eventually) save the Room (no queries yet)
-                $em->persist($room);
-
-                // actually executes the queries (i.e. the INSERT query)
-                $em->flush();
+                $doFlush = true;
             }
         }
       
         
         // GET dans le cas où on veut rentrer dans un salon privé (ou public aussi au final) avec le code
         if($request->getMethod() == 'GET'){
-            $data = $request->query->all();
 
             if(isset($data['lobby_code'])){
-                $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
-                $room = $repository->findOneBy(array("type" => $data['lobby_code']));
+                $room = $roomRepository->findOneBy(array("type" => $data['lobby_code']));
 
                 // On a trouvé le salon dans lequel il veut rentrer
                 if($room != null){
-
-                    $room->addParticipant($player_host);
-
-                    // tells Doctrine you want to (eventually) save the Room (no queries yet)
-                    $em->persist($room);
-
-                    // actually executes the queries (i.e. the INSERT query)
-                    $em->flush();
+                    if(!$room->checkIsParticipant($player_host) && !$room->checkIsAudience($player_host)){
+                        /*
+                         * TODO
+                         * Permettre de rejoindre une room privée en participant ou en jury ou
+                         * ajouter les personnes qui rentrent en participant et quand le cap est atteint
+                         * mettre les nouveaux en jury
+                         */
+                        if($data['lobby_player_role'] == "participant"){
+                            $room->addParticipant($player_host);
+                        }else if($data['lobby_player_role'] == "jury"){
+                            $room->addAudience($player_host);
+                        }
+                        $doFlush = true;
+                    }
 
                 // Code d'un salon qui n'existe pas ou plus
                 } else {
@@ -136,7 +143,15 @@ class DefaultController extends Controller
                 }
             }
         }
-      
+
+        if($doFlush){
+            // tells Doctrine you want to (eventually) save the Room (no queries yet)
+            $em->persist($room);
+
+            // actually executes the queries (i.e. the INSERT query)
+            $em->flush();
+        }
+
         $tab = ["room" => get_object_vars($room),
         "player_role" => "participant",
         "player_id" => isset($new_player)
@@ -145,7 +160,7 @@ class DefaultController extends Controller
         "player_pseudo" => isset($new_player)
             ?$new_player->getPseudo()
             :$player_host->getPseudo()];
-      
+
         if(isset($data['lobby_join'])){
             $tab["joining"] = true;
         } else if(isset($data['lobby_creation'])) {
@@ -160,6 +175,12 @@ class DefaultController extends Controller
      */
     public function saloonAction(Request $request)
     {
+        // Permet de restreindre l'accès.
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
         $repository = $this->getDoctrine()->getRepository('AppBundle:Room');
         $rooms = $repository->findAll();
 
