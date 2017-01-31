@@ -96,6 +96,10 @@ function validate(form_id) {
     //document.getElementsById("scores_2").value = JSON.stringify(playersScore);
     //$("#scores_2").val(JSON.stringify(playersScore));
 
+    $("#score_left").html("+"+scoreP1);
+    $("#score_right").html("+"+scoreP2);
+
+
 
     //$("#animate").css("display", "block");
     $("#animate").css("visibility", "visible");
